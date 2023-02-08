@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>kkRecipes</head>
+<body>
+<h1>My recipes</h1>
+</body>
+<main>
+    <form method="get" th:action="@{/foundByNutrients}">
+                <h3>Minimum calories: </h3><input name="minCalories" value="0"><br>
+                <h3>Maximum calories: </h3><input name="maxCalories" value="550"><br>
+                <h3>Minimum fat: </h3><input name="minFat" value="0"><br>
+                <h3>Maximum fat: </h3><input name="maxFat" value="20"><br>
+                <h3>Minimum carbohydrates: </h3><input name="minCarbs" value="0"><br>
+                <h3>Maximum carbohydrates: </h3><input name="maxCarbs" value="50"><br>
+                <h3>Minimum protein: </h3><input name="minProtein" value="0"><br>
+                <h3>Maximum protein: </h3><input name="maxProtein" value="30"><br>
+        <input type="submit" value="Search">
+    </form>
+</main>
+</html>

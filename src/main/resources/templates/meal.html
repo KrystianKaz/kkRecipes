@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>kkRecipes</head>
+<body>
+<h1>My recipes</h1>
+</body>
+<main>
+    <section id="meals">
+        <h1 class="h1-list">Matching meal:</h1>
+        <div class="container list">
+            <div class="box-for-list">
+                <h3 class="title" th:text="${mealById.title}"></h3>
+                <h4 th:text="${mealById.sourceUrl}"></h4>
+                <h4 th:text="'Preparation time: ' + ${mealById.readyInMinutes} + ' minutes'"></h4>
+                <h4 th:text="'Servings: ' + ${mealById.servings}"></h4>
+                <h4 th:remove="tag" th:utext="${mealById.summary}"></h4><br>
+                <a th:href="${mealById.sourceUrl}"> <img th:src="${mealById.image}" alt="Preview unavailable"></a><br>
+                <div th:each="steps : ${preps}">
+                    <div th:each="inst : ${steps.steps}">
+                        <h4 th:text="${inst.number} + '. ' + ${inst.step}"></h4><br>
+                        <div th:each="ingr : ${inst.ingredients}">
+                            <h4 th:remove="tag" th:text="${ingr.name}"></h4>
+                            <img th:src="'https://spoonacular.com/cdn/ingredients_100x100/' + ${ingr.image}">
+                        </div>
+                        <div th:each="equip : ${inst.equipment}">
+                            <h4 th:remove="tag" th:text="${equip.name}"></h4>
+                            <img th:src="'https://spoonacular.com/cdn/equipment_100x100/' + ${equip.image}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+</html>
