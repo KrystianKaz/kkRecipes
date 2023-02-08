@@ -5,16 +5,24 @@
 <h1>My recipes</h1>
 </body>
 <main>
-    <section id="meals">
-        <h1 class="h1-list">Matching meal:</h1>
-        <div class="container list">
-            <div class="box-for-list">
-                <h3 class="title" th:text="${mealById.title}"></h3>
-                <h4 th:text="${mealById.sourceUrl}"></h4>
+    <section>
+        <h1>Matching meal:</h1>
+        ------------------
+        <div>
+            <div>
+                <h3 th:text="${mealById.title}"></h3>
                 <h4 th:text="'Preparation time: ' + ${mealById.readyInMinutes} + ' minutes'"></h4>
                 <h4 th:text="'Servings: ' + ${mealById.servings}"></h4>
                 <h4 th:remove="tag" th:utext="${mealById.summary}"></h4><br>
-                <a th:href="${mealById.sourceUrl}"> <img th:src="${mealById.image}" alt="Preview unavailable"></a><br>
+                <img th:src="${mealById.image}" alt="Preview unavailable"><br>
+                <h3>Ingredients:</h3>
+                <div th:each="extIngr : ${mealById.extendedIngredients}">
+                    <h4 th:text="${extIngr.amount} + ' ' + ${extIngr.unit}"></h4>
+                    <img th:src="'https://spoonacular.com/cdn/ingredients_100x100/' + ${extIngr.image}">
+                    <h5 th:text="${extIngr.originalName}"></h5>
+                </div>
+                -----------------
+                <h3>Instructions:</h3>
                 <div th:each="steps : ${preps}">
                     <div th:each="inst : ${steps.steps}">
                         <h4 th:text="${inst.number} + '. ' + ${inst.step}"></h4><br>
