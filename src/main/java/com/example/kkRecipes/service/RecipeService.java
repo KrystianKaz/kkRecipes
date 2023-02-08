@@ -3,7 +3,9 @@ package com.example.kkRecipes.service;
 import com.example.kkRecipes.model.dto.analyzed_instructions.InstructionStepsDTO;
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
-import com.example.kkRecipes.model.dto.complex_search.MealDetailsDTO;
+import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
@@ -32,17 +34,21 @@ public class RecipeService {
     }
 
     //todo- implementing recipe
-    public List<InstructionStepsDTO> getInstructions(List<PreparationInstructionsDTO> dtos, Integer id) {
-        List<InstructionStepsDTO> steps = dtos.get(0).getSteps();
-        return steps;
-    }
+//    public List<InstructionStepsDTO> getInstructions(List<PreparationInstructionsDTO> dtos, Integer id) {
+//        List<InstructionStepsDTO> steps = dtos.get(0).getSteps();
+//        return steps;
+//    }
 
-    public ComplexSearchDTO recipeComplexSearch(MealDetailsDTO mealDetailsDTO) {
-        return recipeClient.complexSearch(mealDetailsDTO);
+    public ComplexSearchDTO recipeComplexSearch(ComplexSearchValuesDTO complexSearchValuesDTO) {
+        return recipeClient.complexSearch(complexSearchValuesDTO);
     }
 
     public List<NutrientsSearchResultsDTO> recipeNutrientsSearch(NutrientsSearchValuesDTO nutrientsSearchValuesDTO) {
         return recipeClient.searchByNutrients(nutrientsSearchValuesDTO);
+    }
+
+    public MealPlanDTO generateDailyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
+        return recipeClient.generateDailyMealPlan(mealPlanSearchValuesDTO);
     }
 
 }

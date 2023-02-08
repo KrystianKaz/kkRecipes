@@ -1,9 +1,11 @@
 package com.example.kkRecipes.controller;
 
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
-import com.example.kkRecipes.model.dto.complex_search.MealDetailsDTO;
+import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.service.RecipeService;
@@ -35,31 +37,43 @@ public class RecipeController {
         model.addAttribute("mealById", mealById);
         List<PreparationInstructionsDTO> preparationInstructionsDTOS = recipeService.preparationInstructionsByRecipeId(id);
         model.addAttribute("preps", preparationInstructionsDTOS);
-        return "meal";
+        return "result_pages/meal";
     }
     @GetMapping("/search")
     public String getComplexSearchPage() {
-        return "search";
+        return "search_pages/search";
     }
 
     @GetMapping("/complexSearch")
-    public String getComplexSearchResults(MealDetailsDTO mealDetailsDTO, Model model) {
-        ComplexSearchDTO complexSearchDTO = recipeService.recipeComplexSearch(mealDetailsDTO);
+    public String getComplexSearchResults(ComplexSearchValuesDTO complexSearchValuesDTO, Model model) {
+        ComplexSearchDTO complexSearchDTO = recipeService.recipeComplexSearch(complexSearchValuesDTO);
         int totalResults = complexSearchDTO.getTotalResults();
         model.addAttribute("meals", complexSearchDTO);
         model.addAttribute("size", totalResults);
-        return "meal-list";
+        return "result_pages/meal-list";
     }
 
     @GetMapping("/findByNutrients")
     public String getNutrientsSearchPage() {
-        return "searchByNutrients";
+        return "search_pages/searchByNutrients";
     }
 
     @GetMapping("/foundByNutrients")
     public String resultsByNutrientsSearch(NutrientsSearchValuesDTO nutrientsSearchValuesDTO, Model model){
         List<NutrientsSearchResultsDTO> nutrientsSearchDTO = recipeService.recipeNutrientsSearch(nutrientsSearchValuesDTO);
         model.addAttribute("nutrients", nutrientsSearchDTO);
-        return "mealsByNutrients-list";
+        return "result_pages/mealsByNutrients-list";
+    }
+
+    @GetMapping("/generateDailyMealPlan")
+    public String getDailyMealPlanGeneratorPage() {
+        return "search_pages/daily-generator";
+    }
+
+    @GetMapping("/dailyMealPlan")
+    public String generatedDailyMealPlanPage(MealPlanSearchValuesDTO mealPlanSearchValuesDTO, Model model) {
+        MealPlanDTO mealPlanDTO = recipeService.generateDailyMealPlan(mealPlanSearchValuesDTO);
+        model.addAttribute("plan", mealPlanDTO);
+        return "result_pages/daily-list";
     }
 }

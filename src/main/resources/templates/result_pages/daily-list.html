@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>kkRecipes</head>
+<body>
+<h1>My recipes</h1>
+</body>
+<main>
+    <div th:each="meal : ${plan.meals}">
+        <h2 class="title" th:text="${meal.title}"></h2>
+        <a class="btn btn-for-list" th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank">Get Recipe</a>
+        <h5>________________________</h5>
+    </div>
+</main>
+</html>

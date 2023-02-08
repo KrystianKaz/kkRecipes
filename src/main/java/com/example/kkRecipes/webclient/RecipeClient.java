@@ -1,9 +1,11 @@
 package com.example.kkRecipes.webclient;
 
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
-import com.example.kkRecipes.model.dto.complex_search.MealDetailsDTO;
+import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.utils.UriUtils;
@@ -14,8 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.example.kkRecipes.utils.UriUtils.API_COMPLEX_URL;
-import static com.example.kkRecipes.utils.UriUtils.API_FIND_BY_NUTRIENTS_URL;
+import static com.example.kkRecipes.utils.UriUtils.*;
 
 @Component
 @Slf4j
@@ -30,19 +31,20 @@ public class RecipeClient {
         return restTemplate.getForObject(UriUtils.getRecipeById(id) + getApiKey(), RecipeDTO.class);
     }
 
-    public ComplexSearchDTO complexSearch(MealDetailsDTO mealDetailsDTO) {
+    public ComplexSearchDTO complexSearch(ComplexSearchValuesDTO complexSearchValuesDTO) {
         return restTemplate.getForObject(API_COMPLEX_URL + getApiKey() +
                         "&query={query}&cuisine={cuisine}&diet={diet}&intolerances={intolerances}&type={type}",
                 ComplexSearchDTO.class,
-                mealDetailsDTO.getQuery(),
-                mealDetailsDTO.getCuisine(),
-                mealDetailsDTO.getDiet(),
-                mealDetailsDTO.getIntolerances(),
-                mealDetailsDTO.getType());
+                complexSearchValuesDTO.getQuery(),
+                complexSearchValuesDTO.getCuisine(),
+                complexSearchValuesDTO.getDiet(),
+                complexSearchValuesDTO.getIntolerances(),
+                complexSearchValuesDTO.getType());
     }
 
     public List<NutrientsSearchResultsDTO> searchByNutrients(NutrientsSearchValuesDTO nutrientsSearchValuesDTO) {
-        NutrientsSearchResultsDTO[] forArray = restTemplate.getForObject(API_FIND_BY_NUTRIENTS_URL + getApiKey() + "&minCalories={minCalories}" +
+        NutrientsSearchResultsDTO[] forArray = restTemplate.getForObject(API_FIND_BY_NUTRIENTS_URL + getApiKey() +
+                        "&minCalories={minCalories}" +
                         "&maxCalories={maxCalories}" +
                         "&minFat={minFat}" +
                         "&maxFat={maxFat}" +
@@ -69,6 +71,16 @@ public class RecipeClient {
                         PreparationInstructionsDTO[].class);
         assert forArray != null;
         return Arrays.asList(forArray);
+    }
+
+    public MealPlanDTO generateDailyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
+        return restTemplate.getForObject(API_MEAL_PLANNER + getApiKey()  +
+                "&timeFrame={timeFrame}&targetCalories={targetCalories}&diet={diet}&exclude={exclude}",
+                MealPlanDTO.class,
+                mealPlanSearchValuesDTO.getTimeFrame(),
+                mealPlanSearchValuesDTO.getTargetCalories(),
+                mealPlanSearchValuesDTO.getDiet(),
+                mealPlanSearchValuesDTO.getExclude());
     }
 
     private String getApiKey() {

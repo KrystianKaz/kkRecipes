@@ -3,7 +3,7 @@ package com.example.kkRecipes.model.dto.complex_search;
 import lombok.Data;
 
 @Data
-public class MealDetailsDTO {
+public class ComplexSearchValuesDTO {
 
     private String query;
     private String cuisine;
