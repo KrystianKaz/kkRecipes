@@ -1,15 +1,15 @@
 package com.example.kkRecipes.webclient;
 
-import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
-import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
-import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanWeekDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
+import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.utils.UriUtils;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,7 +19,6 @@ import java.util.List;
 import static com.example.kkRecipes.utils.UriUtils.*;
 
 @Component
-@Slf4j
 public class RecipeClient {
 
 
@@ -74,10 +73,18 @@ public class RecipeClient {
     }
 
     public MealPlanDTO generateDailyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
-        return restTemplate.getForObject(API_MEAL_PLANNER + getApiKey()  +
-                "&timeFrame={day}&targetCalories={targetCalories}&diet={diet}&exclude={exclude}",
+        return restTemplate.getForObject(API_MEAL_PLANNER + getApiKey() +
+                "&timeFrame=day&targetCalories={targetCalories}&diet={diet}&exclude={exclude}",
                 MealPlanDTO.class,
-                mealPlanSearchValuesDTO.getTimeFrame(),
+                mealPlanSearchValuesDTO.getTargetCalories(),
+                mealPlanSearchValuesDTO.getDiet(),
+                mealPlanSearchValuesDTO.getExclude());
+    }
+
+    public MealPlanWeekDTO generateWeeklyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
+        return restTemplate.getForObject(API_MEAL_PLANNER + getApiKey() +
+                        "&timeFrame=week&targetCalories={targetCalories}&diet={diet}&exclude={exclude}",
+                MealPlanWeekDTO.class,
                 mealPlanSearchValuesDTO.getTargetCalories(),
                 mealPlanSearchValuesDTO.getDiet(),
                 mealPlanSearchValuesDTO.getExclude());

@@ -1,22 +1,20 @@
 package com.example.kkRecipes.service;
 
-import com.example.kkRecipes.model.dto.analyzed_instructions.InstructionStepsDTO;
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanWeekDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.webclient.RecipeClient;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Slf4j
 public class RecipeService {
 
     private final RecipeClient recipeClient;
@@ -33,12 +31,6 @@ public class RecipeService {
         return recipeClient.preparationInstructions(id);
     }
 
-    //todo- implementing recipe
-//    public List<InstructionStepsDTO> getInstructions(List<PreparationInstructionsDTO> dtos, Integer id) {
-//        List<InstructionStepsDTO> steps = dtos.get(0).getSteps();
-//        return steps;
-//    }
-
     public ComplexSearchDTO recipeComplexSearch(ComplexSearchValuesDTO complexSearchValuesDTO) {
         return recipeClient.complexSearch(complexSearchValuesDTO);
     }
@@ -49,12 +41,27 @@ public class RecipeService {
 
     public MealPlanDTO generateDailyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
         MealPlanDTO mealPlanDTO = recipeClient.generateDailyMealPlan(mealPlanSearchValuesDTO);
-        setImagesForMealPlans(mealPlanDTO);
+        setImagesForDailyMealPlans(mealPlanDTO);
         return mealPlanDTO;
     }
 
-    private void setImagesForMealPlans(MealPlanDTO mealPlanDTO) {
+    public MealPlanWeekDTO generateWeeklyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
+        MealPlanWeekDTO mealPlanWeekDTO = recipeClient.generateWeeklyMealPlan(mealPlanSearchValuesDTO);
+        setImagesForWeeklyMealPlans(mealPlanWeekDTO);
+        return mealPlanWeekDTO;
+    }
+
+    private void setImagesForDailyMealPlans(MealPlanDTO mealPlanDTO) {
         mealPlanDTO.getMeals()
                 .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
+    }
+
+    private void setImagesForWeeklyMealPlans(MealPlanWeekDTO mealPlanWeekDTO) {
+        mealPlanWeekDTO
+                .getWeek()
+                .getMonday()
+                .getMeals()
+                .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
+        mealPlanWeekDTO.getWeek().getFriday().getMeals().forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
     }
 }

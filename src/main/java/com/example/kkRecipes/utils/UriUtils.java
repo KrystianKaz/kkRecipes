@@ -1,8 +1,5 @@
 package com.example.kkRecipes.utils;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class UriUtils {
 
     public static final String API_BASIC_URL = "https://api.spoonacular.com/";

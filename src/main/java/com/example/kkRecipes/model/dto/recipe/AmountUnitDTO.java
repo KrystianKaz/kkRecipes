@@ -10,6 +10,6 @@ public class AmountUnitDTO {
     private String unitShort;
 
     public String getAmount() {
-        return new DecimalFormat("#.#").format(amount);
+        return new DecimalFormat("#.##").format(amount);
     }
 }

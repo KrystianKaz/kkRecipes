@@ -5,12 +5,12 @@ import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanWeekDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.service.RecipeService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Controller
-@Slf4j
 @RequiredArgsConstructor
 public class RecipeController {
 
@@ -81,4 +80,18 @@ public class RecipeController {
 
         return "result_pages/daily-list";
     }
+
+    @GetMapping("/generateWeeklyMealPlan")
+    public String getWeeklyMealPlanGeneratorPage() {
+        return "search_pages/weekly-generator";
+    }
+
+    @GetMapping("/weeklyMealPlan")
+    public String generatedWeeklyMealPlanPage(MealPlanSearchValuesDTO mealPlanSearchValuesDTO, Model model) {
+        MealPlanWeekDTO mealPlanWeekDTO = recipeService.generateWeeklyMealPlan(mealPlanSearchValuesDTO);
+        model.addAttribute("week", mealPlanWeekDTO);
+
+        return "result_pages/weekly-list";
+    }
+
 }

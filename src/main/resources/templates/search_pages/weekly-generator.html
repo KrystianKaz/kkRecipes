@@ -2,10 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>kkRecipes</head>
 <body>
-<h1>Generate your 3-meals daily plan!</h1>
+<h1>Generate your 3-meals per day weekly plan!</h1>
 </body>
 <main>
-    <form method="get" th:action="@{/dailyMealPlan}">
+    <form method="get" th:action="@{/weeklyMealPlan}">
         <h3>Calories: </h3><input name="targetCalories">
         <h3>Diet:</h3>
         <label class="select">
