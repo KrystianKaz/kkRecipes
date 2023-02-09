@@ -75,7 +75,7 @@ public class RecipeClient {
 
     public MealPlanDTO generateDailyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
         return restTemplate.getForObject(API_MEAL_PLANNER + getApiKey()  +
-                "&timeFrame={timeFrame}&targetCalories={targetCalories}&diet={diet}&exclude={exclude}",
+                "&timeFrame={day}&targetCalories={targetCalories}&diet={diet}&exclude={exclude}",
                 MealPlanDTO.class,
                 mealPlanSearchValuesDTO.getTimeFrame(),
                 mealPlanSearchValuesDTO.getTargetCalories(),

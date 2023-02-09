@@ -7,6 +7,5 @@ public class MealPlanValuesDTO {
     private int id;
     private String title;
     private int servings;
-    private MealPlanNutrientsDTO nutrients;
-
+    private String image;
 }

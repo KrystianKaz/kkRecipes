@@ -7,8 +7,15 @@
 <main>
     <div th:each="meal : ${plan.meals}">
         <h2 class="title" th:text="${meal.title}"></h2>
-        <a class="btn btn-for-list" th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank">Get Recipe</a>
+        <img th:src="${meal.image}"><br>
+        <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank">Get Recipe</a>
         <h5>________________________</h5>
+    </div>
+    <div><h3>Nutritions: </h3>
+        <h4 th:text="'Calories: ' + ${plan.nutrients.calories}"></h4>
+        <h4 th:text="'Fat: ' + ${plan.nutrients.fat}"></h4>
+        <h4 th:text="'Carbohydrates: ' + ${plan.nutrients.carbohydrates}"></h4>
+        <h4 th:text="'Protein: ' + ${plan.nutrients.protein}"></h4>
     </div>
 </main>
 </html>

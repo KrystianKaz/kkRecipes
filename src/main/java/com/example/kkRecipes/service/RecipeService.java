@@ -48,7 +48,13 @@ public class RecipeService {
     }
 
     public MealPlanDTO generateDailyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
-        return recipeClient.generateDailyMealPlan(mealPlanSearchValuesDTO);
+        MealPlanDTO mealPlanDTO = recipeClient.generateDailyMealPlan(mealPlanSearchValuesDTO);
+        setImagesForMealPlans(mealPlanDTO);
+        return mealPlanDTO;
     }
 
+    private void setImagesForMealPlans(MealPlanDTO mealPlanDTO) {
+        mealPlanDTO.getMeals()
+                .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
+    }
 }

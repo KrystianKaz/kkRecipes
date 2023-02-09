@@ -14,10 +14,9 @@
                 <h4 th:text="'Preparation time: ' + ${mealById.readyInMinutes} + ' minutes'"></h4>
                 <h4 th:text="'Servings: ' + ${mealById.servings}"></h4>
                 <h4 th:remove="tag" th:utext="${mealById.summary}"></h4><br>
-                <img th:src="${mealById.image}" alt="Preview unavailable"><br>
-                <h3>Ingredients:</h3>
+                <img th:src="${mealById.image}"><br>
                 <div th:each="extIngr : ${mealById.extendedIngredients}">
-                    <h4 th:text="${extIngr.amount} + ' ' + ${extIngr.unit}"></h4>
+                    <h4 th:text="${extIngr.measures.metric.amount} + ' ' + ${extIngr.measures.metric.unitShort}"></h4>
                     <img th:src="'https://spoonacular.com/cdn/ingredients_100x100/' + ${extIngr.image}">
                     <h5 th:text="${extIngr.originalName}"></h5>
                 </div>
