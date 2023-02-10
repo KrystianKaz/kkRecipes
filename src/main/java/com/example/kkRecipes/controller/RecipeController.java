@@ -89,7 +89,7 @@ public class RecipeController {
     @GetMapping("/weeklyMealPlan")
     public String generatedWeeklyMealPlanPage(MealPlanSearchValuesDTO mealPlanSearchValuesDTO, Model model) {
         MealPlanWeekDTO mealPlanWeekDTO = recipeService.generateWeeklyMealPlan(mealPlanSearchValuesDTO);
-        model.addAttribute("week", mealPlanWeekDTO);
+        model.addAttribute("dto", mealPlanWeekDTO);
 
         return "result_pages/weekly-list";
     }
