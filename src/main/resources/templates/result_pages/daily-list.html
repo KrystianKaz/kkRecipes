@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>kkRecipes</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Header section - Menu toolbar -->
+<div th:insert="~{dynamic/navigationMain.html}"></div>
+<!-- Header section - Menu toolbar -->
+
 <body>
-<h1>My recipes</h1>
-</body>
-<main>
     <div th:each="meal : ${plan.meals}">
         <h2 class="title" th:text="${meal.title}"></h2>
         <img th:src="${meal.image}"><br>
@@ -17,5 +18,5 @@
         <h4 th:text="'Carbohydrates: ' + ${plan.nutrients.carbohydrates}"></h4>
         <h4 th:text="'Protein: ' + ${plan.nutrients.protein}"></h4>
     </div>
-</main>
+</body>
 </html>

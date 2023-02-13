@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>kkRecipes</head>
+
+<!-- Header section - Menu toolbar -->
+<div th:insert="~{dynamic/navigationMain.html}"></div>
+<!-- Header section - Menu toolbar -->
+
 <body>
-<h1>My recipes</h1>
-</body>
-<main>
     <div th:each="nuts : ${nutrients}">
         <h2 class="title" th:text="${nuts.title}"></h2>
         <h3>Nutritions (Per Serving):</h3>
@@ -16,5 +17,5 @@
         <a class="btn btn-for-list" th:href="@{/recipes/{id}(id=${nuts.id})}" target="_blank">Get Recipe</a>
         <h5>________________________</h5>
     </div>
-</main>
+</body>
 </html>

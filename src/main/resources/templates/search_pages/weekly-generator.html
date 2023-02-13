@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>kkRecipes</head>
+<div th:insert="~{dynamic/navigationMain.html}"></div>
 <body>
-<h1>Generate your 3-meals per day weekly plan!</h1>
-</body>
-<main>
     <form method="get" th:action="@{/weeklyMealPlan}">
         <h3>Calories: </h3><input name="targetCalories">
         <h3>Diet:</h3>
@@ -26,5 +23,5 @@
         <h3>Excluded ingredients or allergens:</h3> <input name="exclude" placeholder="e.g. shellfish, olives">
         <input type="submit" value="Search">
     </form>
-</main>
+</body>
 </html>

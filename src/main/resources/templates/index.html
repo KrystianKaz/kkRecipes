@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>kkRecipes</head>
-<body>
-<h1>My recipes</h1>
-<h4><a th:href="@{/search}">Complex Search</a></h4>
-<h4><a th:href="@{/findByNutrients}">Search By Nutrition</a></h4>
-<h4><a th:href="@{/generateDailyMealPlan}">Generate Daily Meal Plan</a></h4>
-<h4><a th:href="@{/generateWeeklyMealPlan}">Generate Weekly Meal Plan</a></h4>
-</body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Header section - Menu toolbar -->
+<div th:insert="~{dynamic/navigationMain.html}"></div>
+<!-- Header section - Menu toolbar -->
+
 </html>

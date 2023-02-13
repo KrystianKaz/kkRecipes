@@ -3,14 +3,15 @@ package com.example.kkRecipes.service;
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
-import com.example.kkRecipes.model.dto.meal_plan.*;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
+import com.example.kkRecipes.model.dto.meal_plan.MealPlanWeekDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.webclient.RecipeClient;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -45,52 +46,11 @@ public class RecipeService {
     }
 
     public MealPlanWeekDTO generateWeeklyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
-        MealPlanWeekDTO mealPlanWeekDTO = recipeClient.generateWeeklyMealPlan(mealPlanSearchValuesDTO);
-        setImagesForWeeklyMealPlans(mealPlanWeekDTO);
-        return mealPlanWeekDTO;
+        return recipeClient.generateWeeklyMealPlan(mealPlanSearchValuesDTO);
     }
 
     private void setImagesForDailyMealPlans(MealPlanDTO mealPlanDTO) {
         mealPlanDTO.getMeals()
-                .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
-    }
-
-    //todo - simplification method below
-    private void setImagesForWeeklyMealPlans(MealPlanWeekDTO mealPlanWeekDTO) {
-        mealPlanWeekDTO
-                .getWeek()
-                .getMonday()
-                .getMeals()
-                .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
-        mealPlanWeekDTO
-                .getWeek()
-                .getTuesday()
-                .getMeals()
-                .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
-        mealPlanWeekDTO
-                .getWeek()
-                .getWednesday()
-                .getMeals()
-                .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
-        mealPlanWeekDTO
-                .getWeek()
-                .getThursday()
-                .getMeals()
-                .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
-        mealPlanWeekDTO
-                .getWeek()
-                .getFriday()
-                .getMeals()
-                .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
-        mealPlanWeekDTO
-                .getWeek()
-                .getSaturday()
-                .getMeals()
-                .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
-        mealPlanWeekDTO
-                .getWeek()
-                .getSunday()
-                .getMeals()
                 .forEach(meal -> meal.setImage(recipeById(meal.getId()).getImage()));
     }
 }

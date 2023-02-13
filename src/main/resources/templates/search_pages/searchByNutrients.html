@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
-<head>kkRecipes</head>
+
+<!-- Header section - Menu toolbar -->
+<div th:insert="~{dynamic/navigationMain.html}"></div>
+<!-- Header section - Menu toolbar -->
+
 <body>
-<h1>My recipes</h1>
-</body>
-<main>
     <form method="get" th:action="@{/foundByNutrients}">
                 <h3>Minimum calories: </h3><input name="minCalories" value="0"><br>
                 <h3>Maximum calories: </h3><input name="maxCalories" value="550"><br>
@@ -16,5 +17,5 @@
                 <h3>Maximum protein: </h3><input name="maxProtein" value="30"><br>
         <input type="submit" value="Search">
     </form>
-</main>
+</body>
 </html>
