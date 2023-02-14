@@ -4,10 +4,15 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
     background-color: #24252a;
 }
 
-li, a, button {
+li,
+a,
+button {
     font-family: "Montserrat", sans-serif;
     font-weight: 300;
     font-size: 16px;
@@ -55,4 +60,78 @@ button {
 
 button:hover {
     background-color: rgb(245, 102, 0);
+}
+
+.meals {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-img {
+    background-image: url(/img/hero-background/food1.jpg);
+    width: 100%;
+    height: 30vh;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.hero-wrapper {
+    color: #ff9900;
+    position: absolute;
+    top: 35%;
+    left: 11%;
+    transform: translate(-50%, -50%);
+    background-color: none;
+    font-family: "Montserrat", sans-serif;
+}
+
+.meals h2 {
+    font-family: "Montserrat", sans-serif;
+    color: aliceblue;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.meals-list {
+    float: left;
+    width: 33.33%;
+    margin: 10px 0px;
+}
+
+.meals-list img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid #ff9900;
+    object-fit: cover;
+}
+
+.meals-list a {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s ease 0s;
+}
+
+.meals-list a:hover {
+    color: rgb(245, 102, 0);
+}
+
+.meals-list h3 {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    color: #ff9900;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }

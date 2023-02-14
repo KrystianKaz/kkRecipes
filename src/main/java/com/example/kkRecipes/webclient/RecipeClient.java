@@ -32,7 +32,7 @@ public class RecipeClient {
 
     public ComplexSearchDTO complexSearch(ComplexSearchValuesDTO complexSearchValuesDTO) {
         return restTemplate.getForObject(API_COMPLEX_URL + getApiKey() +
-                        "&query={query}&cuisine={cuisine}&diet={diet}&intolerances={intolerances}&type={type}",
+                        "&query={query}&cuisine={cuisine}&diet={diet}&intolerances={intolerances}&type={type}&number=12",
                 ComplexSearchDTO.class,
                 complexSearchValuesDTO.getQuery(),
                 complexSearchValuesDTO.getCuisine(),

@@ -8,7 +8,7 @@
 
 <body>
     <header>
-        <img class="logo" src="img/logo.png" alt="kkRecipes Logo">
+        <a th:href="@{/}"><img class="logo" src="img/logo.png" alt="kkRecipes Logo"></a>
         <nav>
             <ul class="navigation_links">
                 <li><a th:href="@{/search}">Complex Search</a></li>
@@ -17,6 +17,6 @@
                 <li><a th:href="@{/generateWeeklyMealPlan}">Generate Weekly Meal Plan</a></li>
             </ul>
         </nav>
-        <a class="cta" href="index.html"><button>Contact</button></a>
+        <a class="cta" href="index.html"><button>User</button></a>
     </header>
 </body>

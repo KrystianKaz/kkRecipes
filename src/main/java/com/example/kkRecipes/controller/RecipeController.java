@@ -49,9 +49,6 @@ public class RecipeController {
         ComplexSearchDTO complexSearchDTO = recipeService.recipeComplexSearch(complexSearchValuesDTO);
         model.addAttribute("meals", complexSearchDTO);
 
-        int totalResults = complexSearchDTO.getTotalResults();
-        model.addAttribute("size", totalResults);
-
         return "result_pages/meal-list";
     }
 
