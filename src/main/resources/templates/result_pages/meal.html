@@ -2,45 +2,59 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="../css/style.css" />
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <section>
-        <h1>Matching meal:</h1>
-        ------------------
-        <div>
-            <div>
-                <h3 th:text="${mealById.title}"></h3>
-                <h4 th:text="'Preparation time: ' + ${mealById.readyInMinutes} + ' minutes'"></h4>
-                <h4 th:text="'Servings: ' + ${mealById.servings}"></h4>
+    <!-- Hero Section begin -->
+    <section class="hero-img">
+        <div class="hero-wrapper">
+            <h1>Complex Search</h1>
+            <p>
+                Find food that you will be inspired in!
+            </p>
+        </div>
+    </section>
+    <!-- Hero Section end -->
+    <section class="meals">
+        <div class="meal-details">
+            <h2 th:text="${mealById.title}"></h2>
+            <img th:src="${mealById.image}"><br>
+            <div class="meal-main-data">
+                <h3 th:text="'Preparation time: ' + ${mealById.readyInMinutes} + ' minutes'"></h3>
+                <h3 th:text="'Servings: ' + ${mealById.servings}"></h3>
+            </div>
+            <div class="meal-summary">
                 <h4 th:remove="tag" th:utext="${mealById.summary}"></h4><br>
-                <img th:src="${mealById.image}"><br>
-                <div th:each="extIngr : ${mealById.extendedIngredients}">
-                    <h4 th:text="${extIngr.measures.metric.amount} + ' ' + ${extIngr.measures.metric.unitShort}"></h4>
-                    <img th:src="'https://spoonacular.com/cdn/ingredients_100x100/' + ${extIngr.image}">
-                    <h5 th:text="${extIngr.originalName}"></h5>
+            </div>
+        </div>
+        <div class="meal-ingredients">
+            <h3>Ingredients:</h3>
+            <div th:each="extIngr : ${mealById.extendedIngredients}">
+                <h4 th:text="${extIngr.measures.metric.amount} + ' ' + ${extIngr.measures.metric.unitShort}"></h4>
+                <img th:src="'https://spoonacular.com/cdn/ingredients_100x100/' + ${extIngr.image}">
+                <h5 th:text="${extIngr.originalName}"></h5>
+            </div>
+        </div>
+        -----------------
+        <h3>Instructions:</h3>
+        <div th:each="steps : ${preps}">
+            <div th:each="inst : ${steps.steps}">
+                <h4 th:text="${inst.number} + '. ' + ${inst.step}"></h4><br>
+                <div th:each="ingr : ${inst.ingredients}">
+                    <h4 th:remove="tag" th:text="${ingr.name}"></h4>
+                    <img th:src="'https://spoonacular.com/cdn/ingredients_100x100/' + ${ingr.image}">
                 </div>
-                -----------------
-                <h3>Instructions:</h3>
-                <div th:each="steps : ${preps}">
-                    <div th:each="inst : ${steps.steps}">
-                        <h4 th:text="${inst.number} + '. ' + ${inst.step}"></h4><br>
-                        <div th:each="ingr : ${inst.ingredients}">
-                            <h4 th:remove="tag" th:text="${ingr.name}"></h4>
-                            <img th:src="'https://spoonacular.com/cdn/ingredients_100x100/' + ${ingr.image}">
-                        </div>
-                        <div th:each="equip : ${inst.equipment}">
-                            <h4 th:remove="tag" th:text="${equip.name}"></h4>
-                            <img th:src="'https://spoonacular.com/cdn/equipment_100x100/' + ${equip.image}">
-                        </div>
-                    </div>
+                <div th:each="equip : ${inst.equipment}">
+                    <h4 th:remove="tag" th:text="${equip.name}"></h4>
+                    <img th:src="'https://spoonacular.com/cdn/equipment_100x100/' + ${equip.image}">
                 </div>
             </div>
         </div>
     </section>
 </body>
+
 </html>

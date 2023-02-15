@@ -62,12 +62,6 @@ button:hover {
     background-color: rgb(245, 102, 0);
 }
 
-.meals {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
 .hero-img {
     background-image: url(/img/hero-background/food1.jpg);
     width: 100%;
@@ -86,6 +80,46 @@ button:hover {
     transform: translate(-50%, -50%);
     background-color: none;
     font-family: "Montserrat", sans-serif;
+}
+
+.meals {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.meal-details {
+    font-family: "Montserrat", sans-serif;
+    font-size: medium;
+    color: aliceblue;
+    text-align: center;
+}
+
+.meal-main-data {
+    text-align: center;
+    margin-bottom: 20px;    
+}
+
+.meal-summary {
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom: 20px;
+}
+
+.meal-details img{
+    border-radius: 4%;
+    margin-bottom: 10px;
+}
+
+.meal-details h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: larger;
+    color: #ff9900;
+}
+
+meal-details h4 {
+    font-family: "Montserrat", sans-serif;
+    font-size: medium;
 }
 
 .meals h2 {
@@ -112,6 +146,14 @@ button:hover {
     border-radius: 50%;
     border: 2px solid #ff9900;
     object-fit: cover;
+    transition: transform 1s, filter 0.5s ease-in-out;
+    transform-origin: center center;
+    filter: brightness(100%);
+}
+
+.meals-list img:hover {
+    filter: brightness(50%);
+    transform: scale(1.05);
 }
 
 .meals-list a {
