@@ -20,6 +20,12 @@ button {
     text-decoration: none;
 }
 
+h3 {
+    font-family: "Montserrat", sans-serif;
+    font-size: larger;
+    color: #ff9900;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -117,9 +123,54 @@ button:hover {
     color: #ff9900;
 }
 
-meal-details h4 {
+.meal-details h4 {
     font-family: "Montserrat", sans-serif;
     font-size: medium;
+}
+
+.meal-ingredients {
+    font-family: "Montserrat", sans-serif;
+    color: aliceblue;
+    margin-bottom: 10px;
+}
+
+.meal-ingredients-list {
+    float: left;
+    width: 20%;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.meal-ingredients-list h5 {
+    font-family: "Montserrat", sans-serif;
+    font-size: small;
+    color: aliceblue;
+}
+
+.meal-ingredients-list img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.meal-instructions {
+    margin-top: 10px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.meal-instructions-list {
+    float:left;
+    margin-top: 10px;
+}
+
+.meal-instructions h4 {
+    font-family: "Montserrat", sans-serif;
+    font-size: medium;
+    color: aliceblue;
+    font-weight: normal;
+    text-align: justify;
 }
 
 .meals h2 {

@@ -25,6 +25,7 @@ public class RecipeClient {
     private final RestTemplate restTemplate = new RestTemplate();
 
     private final String API_KEY = "bad4e6f148a34319bfa9e6276114611c";
+//    private final String API_KEY = "3ae151c6bcb94922b73d44be38dc2bbf";
 
     public RecipeDTO recipeById(Integer id) {
         return restTemplate.getForObject(UriUtils.getRecipeById(id) + getApiKey(), RecipeDTO.class);
