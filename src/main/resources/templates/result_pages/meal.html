@@ -23,6 +23,27 @@
         <div class="meal-details">
             <h2 th:text="${mealById.title}"></h2>
             <img th:src="${mealById.image}">
+            <div class="badges">
+                <div class="badges-row" th:if="${mealById.isVegetarian}">
+                    <img src="/img/badges/vegetarian.svg">
+                    <div class="badges-text">vegetarian</div>
+                </div>
+                <div class="badges-row" th:if="${mealById.isVegan}">
+                    <img src="/img/badges/vegan.svg">
+                    <div class="badges-text">vegan</div>
+                </div>
+                <div class="badges-row" th:if="${mealById.isGlutenFree}">
+                    <img src="/img/badges/gluten-free.svg">
+                    <div class="badges-text">gluten-free</div>
+                </div>
+                <div class="badges-row" th:if="${mealById.isDairyFree}">
+                    <img src="/img/badges/dairy-free.svg">
+                    <div class="badges-text">dairy-free</div>
+                </div>
+                <div class="badges-row" th:if="${mealById.isVeryHealthy}">
+                    <img src="/img/badges/protein.svg">
+                    <div class="badges-text">healthy</div></div>
+            </div>
             <div class="meal-main-data">
                 <h3 th:text="'Preparation time: ' + ${mealById.readyInMinutes} + ' minutes'"></h3>
                 <h3 th:text="'Servings: ' + ${mealById.servings}"></h3>
@@ -30,7 +51,6 @@
             <div class="meal-summary">
                 <h4 th:remove="tag" th:utext="${mealById.summary}"></h4>
             </div>
-        </div>
         <div class="meal-ingredients">
             <h3>Ingredients:</h3>
             <div th:each="extIngr : ${mealById.extendedIngredients}">

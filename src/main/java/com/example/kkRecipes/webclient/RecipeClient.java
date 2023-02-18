@@ -51,7 +51,8 @@ public class RecipeClient {
                         "&minCarbs={minCarbs}" +
                         "&maxCarbs={maxCarbs}" +
                         "&minProtein={minProtein}" +
-                        "&maxProtein={maxProtein}",
+                        "&maxProtein={maxProtein}" +
+                        "&number=12",
                 NutrientsSearchResultsDTO[].class,
                 nutrientsSearchValuesDTO.getMinCalories(),
                 nutrientsSearchValuesDTO.getMaxCalories(),
@@ -75,7 +76,7 @@ public class RecipeClient {
 
     public MealPlanDTO generateDailyMealPlan(MealPlanSearchValuesDTO mealPlanSearchValuesDTO) {
         return restTemplate.getForObject(API_MEAL_PLANNER + getApiKey() +
-                "&timeFrame=day&targetCalories={targetCalories}&diet={diet}&exclude={exclude}",
+                        "&timeFrame=day&targetCalories={targetCalories}&diet={diet}&exclude={exclude}",
                 MealPlanDTO.class,
                 mealPlanSearchValuesDTO.getTargetCalories(),
                 mealPlanSearchValuesDTO.getDiet(),

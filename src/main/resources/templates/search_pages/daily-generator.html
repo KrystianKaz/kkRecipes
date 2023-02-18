@@ -2,33 +2,49 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/style.css" />
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <form method="get" th:action="@{/dailyMealPlan}">
-        <h3>Calories: </h3><input name="targetCalories" value="2000">
-        <h3>Diet:</h3>
-        <label class="select">
-            <select name="diet">
-                <option value="">-</option>
-                <option value="gluten-free">Gluten Free</option>
-                <option value="ketogenic">Ketogenic</option>
-                <option value="vegetarian">Vegetarian</option>
-                <option value="lacto-vegetarian">Lacto-Vegetarian</option>
-                <option value="ovo-vegetarian">Ovo-Vegetarian</option>
-                <option value="pescetarian">Pescetarian</option>
-                <option value="paleo">Paleo</option>
-                <option value="fodmap">Low FODMAP</option>
-                <option value="whole30">Whole30</option>
-            </select>
-            <span class="custom-arrow"></span>
-        </label>
-        <h3>Excluded ingredients or allergens:</h3> <input name="exclude" placeholder="e.g. shellfish, olives">
-        <input type="submit" value="Search">
-    </form>
+    <!-- Hero Section begin -->
+    <section class="hero-img3">
+        <div class="hero-wrapper">
+            <h1>Daily Meal Plan Generator</h1>
+            <p>
+                Generate your 3-meals daily plan!
+            </p>
+        </div>
+    </section>
+    <!-- Hero Section end -->
+
+    <!-- Daily Generator section begin -->
+    <div class="search-complex">
+        <form method="get" th:action="@{/dailyMealPlan}">
+            <h3>Calories: </h3><input name="targetCalories" value="2000">
+            <h3>Diet:</h3>
+            <label class="select">
+                <select name="diet">
+                    <option value="">-</option>
+                    <option value="gluten-free">Gluten Free</option>
+                    <option value="ketogenic">Ketogenic</option>
+                    <option value="vegetarian">Vegetarian</option>
+                    <option value="lacto-vegetarian">Lacto-Vegetarian</option>
+                    <option value="ovo-vegetarian">Ovo-Vegetarian</option>
+                    <option value="pescetarian">Pescetarian</option>
+                    <option value="paleo">Paleo</option>
+                    <option value="fodmap">Low FODMAP</option>
+                    <option value="whole30">Whole30</option>
+                </select>
+                <span class="custom-arrow"></span>
+            </label>
+            <h3>Excluded:</h3> <input name="exclude" placeholder="e.g. shellfish, olives, milk, eggs">
+            <button>Generate</button>
+        </form>
+    </div>
+    <!-- Daily Generator section begin -->
 </body>
+
 </html>

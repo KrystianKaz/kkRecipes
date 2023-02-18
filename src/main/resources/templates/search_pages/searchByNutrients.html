@@ -2,23 +2,39 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/style.css" />
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <form method="get" th:action="@{/foundByNutrients}">
-                <h3>Minimum calories: </h3><input name="minCalories" value="0"><br>
-                <h3>Maximum calories: </h3><input name="maxCalories" value="550"><br>
-                <h3>Minimum fat: </h3><input name="minFat" value="0"><br>
-                <h3>Maximum fat: </h3><input name="maxFat" value="20"><br>
-                <h3>Minimum carbohydrates: </h3><input name="minCarbs" value="0"><br>
-                <h3>Maximum carbohydrates: </h3><input name="maxCarbs" value="50"><br>
-                <h3>Minimum protein: </h3><input name="minProtein" value="0"><br>
-                <h3>Maximum protein: </h3><input name="maxProtein" value="30"><br>
-        <input type="submit" value="Search">
-    </form>
+    <!-- Hero Section begin -->
+    <section class="hero-img2">
+        <div class="hero-wrapper">
+            <h1>Meals with nutrients</h1>
+            <p>
+                Find recipes with nutritional values!
+            </p>
+        </div>
+    </section>
+    <!-- Hero Section end -->
+
+    <!-- Search By Nutrition section begin -->
+    <div class="search-complex">
+        <form method="get" th:action="@{/foundByNutrients}">
+            <h3>Minimum calories: </h3><input name="minCalories" value="0">
+            <h3>Maximum calories: </h3><input name="maxCalories" value="550">
+            <h3>Minimum fat: </h3><input name="minFat" value="0">
+            <h3>Maximum fat: </h3><input name="maxFat" value="20">
+            <h3>Minimum carbohydrates: </h3><input name="minCarbs" value="0">
+            <h3>Maximum carbohydrates: </h3><input name="maxCarbs" value="50">
+            <h3>Minimum protein: </h3><input name="minProtein" value="0">
+            <h3>Maximum protein: </h3><input name="maxProtein" value="30">
+            <button>Search</button>
+        </form>
+    </div>
+    <!-- Search By Nutrition section end -->
 </body>
+
 </html>
