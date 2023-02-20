@@ -2,24 +2,45 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/style.css" />
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <div th:each="meal : ${plan.meals}">
-        <h2 class="title" th:text="${meal.title}"></h2>
-        <img th:src="${meal.image}"><br>
-        <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank">Get Recipe</a>
-        <h5>________________________</h5>
-    </div>
-    <div><h3>Nutritions: </h3>
-        <h4 th:text="'Calories: ' + ${plan.nutrients.calories}"></h4>
-        <h4 th:text="'Fat: ' + ${plan.nutrients.fat}"></h4>
-        <h4 th:text="'Carbohydrates: ' + ${plan.nutrients.carbohydrates}"></h4>
-        <h4 th:text="'Protein: ' + ${plan.nutrients.protein}"></h4>
-    </div>
+    <!-- Hero Section begin -->
+    <section class="hero-img3">
+        <div class="hero-wrapper">
+            <h1>Daily Meal Plan Generator</h1>
+            <p>
+                Generate your 3-meals daily plan!
+            </p>
+        </div>
+    </section>
+    <!-- Hero Section end -->
+
+    <!-- Daily Diet section begin -->
+    <section class="meals">
+        <h2>Your daily diet:</h2>
+        <div th:each="meal : ${plan.meals}">
+            <div class="meals-list">
+                <h3 th:text="${meal.title}"></h3>
+                <div class="img-hover-zoom img-hover-zoom--brightness img-hover-zoom--brightness:hover">
+                    <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank"><img th:src="${meal.image}"></a>
+                </div>
+                <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank">Get Recipe</a>
+            </div>
+        </div>
+        <div class="daily-nutritions">
+            <h3>Nutrition values of the day: </h3>
+            <h4 th:text="'Calories: ' + ${plan.nutrients.calories}"></h4>
+            <h4 th:text="'Fat: ' + ${plan.nutrients.fat}"></h4>
+            <h4 th:text="'Carbohydrates: ' + ${plan.nutrients.carbohydrates}"></h4>
+            <h4 th:text="'Protein: ' + ${plan.nutrients.protein}"></h4>
+        </div>
+    </section>
+    <!-- Daily Diet section end -->
 </body>
+
 </html>

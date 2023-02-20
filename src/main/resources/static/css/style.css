@@ -326,3 +326,23 @@ button:hover {
 .badges-text {
     font-size: smaller;
 }
+
+.daily-nutritions {
+    font-family: "Montserrat", sans-serif;
+    color: aliceblue;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.weekly-nutritions {
+    font-family: "Montserrat", sans-serif;
+    color: aliceblue;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.weekly-bar {
+    height: 1px;
+    background-color: #ff9900;
+    width: 100%;
+}
