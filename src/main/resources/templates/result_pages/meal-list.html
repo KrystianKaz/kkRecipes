@@ -9,32 +9,32 @@
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <!-- Hero Section begin -->
-    <section class="hero-img">
-        <div class="hero-wrapper">
-            <h1>Complex Search</h1>
-            <p>
-                Find food that you will be inspired in!
-            </p>
-        </div>
-    </section>
-    <!-- Hero Section end -->
+<!-- Hero Section begin -->
+<section class="hero-img">
+    <div class="hero-wrapper">
+        <h1>Complex Search</h1>
+        <p>
+            Find food that you will be inspired in!
+        </p>
+    </div>
+</section>
+<!-- Hero Section end -->
 
-    <!-- Meal list section begin -->
-    <section class="meals">
-        <h2>Matching meals:</h2>
-        <div th:each="meal : ${meals.results}">
-            <div class="meals-list">
-                <h3 th:text="${meal.title}"></h3>
-                <div class="img-hover-zoom img-hover-zoom--brightness img-hover-zoom--brightness:hover">
-                    <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank"><img th:src="${meal.image}"></a>
-                </div>
-                <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank">Get Recipe</a>
+<!-- Meal list section begin -->
+<section class="meals">
+    <h2>Matching meals:</h2>
+    <div th:each="meal : ${meals.results}">
+        <div class="meals-list">
+            <h3 th:text="${meal.title}"></h3>
+            <div class="img-hover-zoom img-hover-zoom--brightness img-hover-zoom--brightness:hover">
+                <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank"><img th:src="${meal.image}"></a>
             </div>
+            <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank">Get Recipe</a>
         </div>
-        </div>
-    </section>
-    <!-- Meal list section end -->
+    </div>
+    </div>
+</section>
+<!-- Meal list section end -->
 </body>
 
 </html>

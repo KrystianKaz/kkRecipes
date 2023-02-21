@@ -2,6 +2,7 @@ package com.example.kkRecipes.controller;
 
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
+import com.example.kkRecipes.model.dto.complex_search.ComplexSearchResultsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
@@ -11,11 +12,17 @@ import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.service.RecipeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.awt.print.Pageable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 @Controller
