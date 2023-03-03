@@ -2,11 +2,15 @@ package com.example.kkRecipes.model;
 
 import com.example.kkRecipes.model.enums.UserRolesEnum;
 import jakarta.persistence.*;
+import lombok.Getter;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+@Component
+@Getter
 @Entity
 public class User {
 
@@ -14,10 +18,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(unique = true, length = 30, nullable = false)
     private String email;
-
+    @Column(unique = true, length = 15, nullable = false)
     private String username;
-
+    @Column(unique = true, length = 15, nullable = false)
     private String password;
 
     private boolean active = true;

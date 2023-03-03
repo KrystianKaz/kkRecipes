@@ -31,13 +31,8 @@ public class RecipeController {
 
     private final RecipeService recipeService;
 
-    @GetMapping("/")
-    public String getHomePage() {
-        return "index";
-    }
-
     @GetMapping("/recipes/{id}")
-    public String getRecipeById(@PathVariable Integer id, Model model){
+    public String getRecipeById(@PathVariable Integer id, Model model) {
         RecipeDTO mealById = recipeService.recipeById(id);
         model.addAttribute("mealById", mealById);
 
@@ -46,6 +41,7 @@ public class RecipeController {
 
         return "result_pages/meal";
     }
+
     @GetMapping("/search")
     public String getComplexSearchPage() {
         return "search_pages/search";
@@ -65,7 +61,7 @@ public class RecipeController {
     }
 
     @GetMapping("/foundByNutrients")
-    public String resultsByNutrientsSearch(NutrientsSearchValuesDTO nutrientsSearchValuesDTO, Model model){
+    public String resultsByNutrientsSearch(NutrientsSearchValuesDTO nutrientsSearchValuesDTO, Model model) {
         List<NutrientsSearchResultsDTO> nutrientsSearchDTO = recipeService.recipeNutrientsSearch(nutrientsSearchValuesDTO);
         model.addAttribute("nutrients", nutrientsSearchDTO);
 

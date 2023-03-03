@@ -1,17 +1,17 @@
 package com.example.kkRecipes.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
 public class Meal {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    private String title;
+    private int mealId;
+    private String mealTitle;
 
     @JoinColumn(name = "likedByUser", insertable = false, updatable = false)
     @ManyToMany

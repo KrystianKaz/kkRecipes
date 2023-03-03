@@ -2,55 +2,56 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="../css/style.css" />
+<link rel="stylesheet" href="../css/style.css"/>
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <!-- Hero Section begin -->
-    <section class="hero-img">
-        <div class="hero-wrapper">
-            <h1>Complex Search</h1>
-            <p>
-                Find food that you will be inspired in!
-            </p>
+<!-- Hero Section begin -->
+<section class="hero-img">
+    <div class="hero-wrapper">
+        <h1>Complex Search</h1>
+        <p>
+            Find food that you will be inspired in!
+        </p>
+    </div>
+</section>
+<!-- Hero Section end -->
+<section class="meals">
+    <div class="meal-details">
+        <h2 th:text="${mealById.title}"></h2>
+        <img th:src="${mealById.image}">
+        <div class="badges">
+            <div class="badges-row" th:if="${mealById.isVegetarian}">
+                <img src="/img/badges/vegetarian.svg">
+                <div class="badges-text">vegetarian</div>
+            </div>
+            <div class="badges-row" th:if="${mealById.isVegan}">
+                <img src="/img/badges/vegan.svg">
+                <div class="badges-text">vegan</div>
+            </div>
+            <div class="badges-row" th:if="${mealById.isGlutenFree}">
+                <img src="/img/badges/gluten-free.svg">
+                <div class="badges-text">gluten-free</div>
+            </div>
+            <div class="badges-row" th:if="${mealById.isDairyFree}">
+                <img src="/img/badges/dairy-free.svg">
+                <div class="badges-text">dairy-free</div>
+            </div>
+            <div class="badges-row" th:if="${mealById.isVeryHealthy}">
+                <img src="/img/badges/protein.svg">
+                <div class="badges-text">healthy</div>
+            </div>
         </div>
-    </section>
-    <!-- Hero Section end -->
-    <section class="meals">
-        <div class="meal-details">
-            <h2 th:text="${mealById.title}"></h2>
-            <img th:src="${mealById.image}">
-            <div class="badges">
-                <div class="badges-row" th:if="${mealById.isVegetarian}">
-                    <img src="/img/badges/vegetarian.svg">
-                    <div class="badges-text">vegetarian</div>
-                </div>
-                <div class="badges-row" th:if="${mealById.isVegan}">
-                    <img src="/img/badges/vegan.svg">
-                    <div class="badges-text">vegan</div>
-                </div>
-                <div class="badges-row" th:if="${mealById.isGlutenFree}">
-                    <img src="/img/badges/gluten-free.svg">
-                    <div class="badges-text">gluten-free</div>
-                </div>
-                <div class="badges-row" th:if="${mealById.isDairyFree}">
-                    <img src="/img/badges/dairy-free.svg">
-                    <div class="badges-text">dairy-free</div>
-                </div>
-                <div class="badges-row" th:if="${mealById.isVeryHealthy}">
-                    <img src="/img/badges/protein.svg">
-                    <div class="badges-text">healthy</div></div>
-            </div>
-            <div class="meal-main-data">
-                <h3 th:text="'Preparation time: ' + ${mealById.readyInMinutes} + ' minutes'"></h3>
-                <h3 th:text="'Servings: ' + ${mealById.servings}"></h3>
-            </div>
-            <div class="meal-summary">
-                <h4 th:remove="tag" th:utext="${mealById.summary}"></h4>
-            </div>
+        <div class="meal-main-data">
+            <h3 th:text="'Preparation time: ' + ${mealById.readyInMinutes} + ' minutes'"></h3>
+            <h3 th:text="'Servings: ' + ${mealById.servings}"></h3>
+        </div>
+        <div class="meal-summary">
+            <h4 th:remove="tag" th:utext="${mealById.summary}"></h4>
+        </div>
         <div class="meal-ingredients">
             <h3>Ingredients:</h3>
             <div th:each="extIngr : ${mealById.extendedIngredients}">
@@ -71,7 +72,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </body>
 
 </html>

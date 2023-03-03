@@ -1,3 +1,6 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +10,31 @@
 </head>
 
 <body>
-    <header>
-        <a th:href="@{/}"><img class="logo" src="/img/logo.png" alt="kkRecipes Logo"></a>
-        <nav>
-            <ul class="navigation_links">
-                <li><a th:href="@{/search}">Complex Search</a></li>
-                <li><a th:href="@{/findByNutrients}">Search By Nutrition</a></li>
-                <li><a th:href="@{/generateDailyMealPlan}">Genereate Daily Meal Plan</a></li>
-                <li><a th:href="@{/generateWeeklyMealPlan}">Generate Weekly Meal Plan</a></li>
-            </ul>
-        </nav>
-        <a href="index.html"><button>User</button></a>
-    </header>
+<header>
+    <a th:href="@{/}"><img class="logo" src="/img/logo.png" alt="kkRecipes Logo"></a>
+    <nav>
+        <ul class="navigation_links">
+            <li><a th:href="@{/search}">Complex Search</a></li>
+            <li><a th:href="@{/findByNutrients}">Search By Nutrition</a></li>
+            <li><a th:href="@{/generateDailyMealPlan}">Genereate Daily Meal Plan</a></li>
+            <li><a th:href="@{/generateWeeklyMealPlan}">Generate Weekly Meal Plan</a></li>
+        </ul>
+    </nav>
+    <div th:if="${#authorization.expression('isAuthenticated()')}">
+        <a href="/">
+            <button>User</button>
+        </a>
+        <a href="/logout">
+            <button>Logout</button>
+        </a>
+    </div>
+    <div th:unless="${#authorization.expression('isAuthenticated()')}">
+        <a href="/login">
+            <button>Login</button>
+        </a>
+        <a href="/register">
+            <button>Register</button>
+        </a>
+    </div>
+</header>
 </body>

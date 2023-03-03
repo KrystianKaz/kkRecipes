@@ -2,7 +2,6 @@ package com.example.kkRecipes.service;
 
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
-import com.example.kkRecipes.model.dto.complex_search.ComplexSearchResultsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
@@ -11,20 +10,16 @@ import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDT
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.webclient.RecipeClient;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class RecipeService {
 
     private final RecipeClient recipeClient;
-
-    public RecipeService(final RecipeClient recipeClient) {
-        this.recipeClient = recipeClient;
-    }
 
     public RecipeDTO recipeById(Integer id) {
         return recipeClient.recipeById(id);
