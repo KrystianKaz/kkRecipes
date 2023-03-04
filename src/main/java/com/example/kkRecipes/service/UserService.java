@@ -19,7 +19,6 @@ public class UserService {
     }
 
     public User findUserByUsername(String username) {
-        String message = "User with username: " + username + " not exists!";
-        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotExistException(message));
+        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotExistException(username));
     }
 }

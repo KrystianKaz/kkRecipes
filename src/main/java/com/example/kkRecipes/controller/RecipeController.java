@@ -1,8 +1,8 @@
 package com.example.kkRecipes.controller;
 
+import com.example.kkRecipes.model.Meal;
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
-import com.example.kkRecipes.model.dto.complex_search.ComplexSearchResultsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
@@ -10,19 +10,18 @@ import com.example.kkRecipes.model.dto.meal_plan.MealPlanWeekDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
+import com.example.kkRecipes.service.MealService;
 import com.example.kkRecipes.service.RecipeService;
+import com.example.kkRecipes.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.view.RedirectView;
 
-import java.awt.print.Pageable;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -30,9 +29,11 @@ import java.util.List;
 public class RecipeController {
 
     private final RecipeService recipeService;
+    private final MealService mealService;
+    private final UserService userService;
 
     @GetMapping("/recipes/{id}")
-    public String getRecipeById(@PathVariable Integer id, Model model) {
+    public String getRecipeById(@PathVariable int id, Model model) {
         RecipeDTO mealById = recipeService.recipeById(id);
         model.addAttribute("mealById", mealById);
 
@@ -92,6 +93,12 @@ public class RecipeController {
         model.addAttribute("dto", mealPlanWeekDTO);
 
         return "result_pages/weekly-list";
+    }
+
+    @PostMapping("/recipes/{id}")
+    public RedirectView likeOrDislikeMeal(@PathVariable("id") int id, Principal principal, Meal meal) {
+        mealService.addRecipeToLikedByUser(id, userService.findUserByUsername(principal.getName()), meal);
+        return new RedirectView("/recipes/{id}");
     }
 
 }

@@ -1,19 +1,21 @@
 package com.example.kkRecipes.model;
 
 import jakarta.persistence.*;
-
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Meal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private int mealId;
     private String mealTitle;
 
-    @JoinColumn(name = "likedByUser", insertable = false, updatable = false)
-    @ManyToMany
-    private List<User> likedBy;
+    @JoinColumn(name = "liked_by_user")
+    @ManyToOne
+    private User user;
 }

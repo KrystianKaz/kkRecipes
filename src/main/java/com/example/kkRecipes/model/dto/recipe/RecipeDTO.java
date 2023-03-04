@@ -7,6 +7,7 @@ import java.util.List;
 @Data
 public class RecipeDTO {
 
+    private int id;
     private String title;
     private String sourceUrl;
     private String image;

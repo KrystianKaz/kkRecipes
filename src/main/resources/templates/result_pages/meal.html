@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="../css/style.css"/>
@@ -23,6 +23,9 @@
     <div class="meal-details">
         <h2 th:text="${mealById.title}"></h2>
         <img th:src="${mealById.image}">
+        <form method="post" th:action="@{/recipes/{id}(id=${mealById.id})}">
+            <button>Like</button>
+        </form>
         <div class="badges">
             <div class="badges-row" th:if="${mealById.isVegetarian}">
                 <img src="/img/badges/vegetarian.svg">

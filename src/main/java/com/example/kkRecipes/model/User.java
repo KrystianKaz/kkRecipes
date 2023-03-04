@@ -22,7 +22,7 @@ public class User {
     private String email;
     @Column(unique = true, length = 15, nullable = false)
     private String username;
-    @Column(unique = true, length = 15, nullable = false)
+    @Column(unique = true, length = 60, nullable = false)
     private String password;
 
     private boolean active = true;
@@ -35,7 +35,6 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRolesEnum userRoles = UserRolesEnum.USER;
 
-    @JoinColumn(name = "likedMeals", insertable = false, updatable = false)
-    @ManyToMany
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Meal> likedMeals;
 }
