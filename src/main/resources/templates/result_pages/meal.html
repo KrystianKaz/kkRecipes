@@ -23,9 +23,6 @@
     <div class="meal-details">
         <h2 th:text="${mealById.title}"></h2>
         <img th:src="${mealById.image}">
-        <form method="post" th:action="@{/recipes/{id}(id=${mealById.id})}">
-            <button>Like</button>
-        </form>
         <div class="badges">
             <div class="badges-row" th:if="${mealById.isVegetarian}">
                 <img src="/img/badges/vegetarian.svg">

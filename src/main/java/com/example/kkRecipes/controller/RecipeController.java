@@ -97,7 +97,7 @@ public class RecipeController {
 
     @PostMapping("/recipes/{id}")
     public RedirectView likeOrDislikeMeal(@PathVariable("id") int id, Principal principal, Meal meal) {
-        mealService.addRecipeToLikedByUser(id, userService.findUserByUsername(principal.getName()), meal);
+        mealService.addMealToLikedByUser(id, userService.findUserByUsername(principal.getName()), meal);
         return new RedirectView("/recipes/{id}");
     }
 

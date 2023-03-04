@@ -20,8 +20,8 @@
         </ul>
     </nav>
     <div th:if="${#authorization.expression('isAuthenticated()')}">
-        <a href="/">
-            <button>User</button>
+        <a href="/user">
+            <button>User panel</button>
         </a>
         <a href="/logout">
             <button>Logout</button>

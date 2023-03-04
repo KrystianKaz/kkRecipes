@@ -163,6 +163,7 @@ button:hover {
     font-family: "Montserrat", sans-serif;
     color: aliceblue;
     margin-bottom: 10px;
+    display: flow-root;
 }
 
 .meal-ingredients-list {

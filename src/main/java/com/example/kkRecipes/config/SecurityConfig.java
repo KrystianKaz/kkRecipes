@@ -28,8 +28,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/findByNutrients").hasAnyAuthority("USER", "ADMIN")
-                        .requestMatchers("/search").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/user", "/likedMeals").hasAnyAuthority("USER", "ADMIN")
+//                        .requestMatchers("/search").hasAnyAuthority("ADMIN")
                         .anyRequest().permitAll()
                 )
                 .csrf().disable()
