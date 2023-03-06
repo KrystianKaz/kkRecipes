@@ -14,8 +14,8 @@ public class Meal {
     private Long id;
     private int mealId;
     private String mealTitle;
-
     @JoinColumn(name = "liked_by_user")
     @ManyToOne
     private User user;
+    private boolean stillLiked;
 }

@@ -347,3 +347,7 @@ button:hover {
     background-color: #ff9900;
     width: 100%;
 }
+
+.meal-like {
+    margin-top: 10px;
+}

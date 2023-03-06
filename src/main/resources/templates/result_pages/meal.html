@@ -21,6 +21,25 @@
 <!-- Hero Section end -->
 <section class="meals">
     <div class="meal-details">
+        <div class="meal-like" th:if="${#authorization.expression('isAuthenticated()')}">
+            <div th:unless="${wasMealAddedToLikedByUser}">
+                <form method="post" th:action="@{/recipes/{id}/add(id=${mealById.id})}">
+                    <input class="meal-like" type="image" src="/img/badges/disliked.svg">
+                </form>
+            </div>
+            <div th:if="${wasMealAddedToLikedByUser}">
+                <div th:if="${stillLiked}">
+                    <form method="post" th:action="@{/recipes/{id}/liked(id=${mealById.id})}">
+                        <input class="meal-like" type="image" src="/img/badges/liked.svg">
+                    </form>
+                </div>
+                <div th:unless="${stillLiked}">
+                    <form method="post" th:action="@{/recipes/{id}/liked(id=${mealById.id})}">
+                        <input class="meal-like" type="image" src="/img/badges/disliked.svg">
+                    </form>
+                </div>
+            </div>
+        </div>
         <h2 th:text="${mealById.title}"></h2>
         <img th:src="${mealById.image}">
         <div class="badges">

@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -16,21 +17,52 @@ public class MealService {
     private final MealRepository mealRepository;
     private final RecipeClient recipeClient;
 
-    public void addMealToLikedByUser(int id, User user, Meal meal) {
-        meal.setMealId(id);
-        meal.setMealTitle(recipeClient.recipeById(Math.toIntExact(id)).getTitle());
+    public void addMealToLikedByUser(int mealId, User user, Meal meal) {
+        meal.setMealId(mealId);
+        meal.setMealTitle(recipeClient.recipeById(Math.toIntExact(mealId)).getTitle());
         meal.setUser(user);
+        meal.setStillLiked(true);
         mealRepository.save(meal);
     }
 
-    public void removeMealFromLikedByUser(int id, User user, Meal meal) {
-
-    }
-
-    public List<Meal> showUsersLikedMeals(User user) {
+    public List<Meal> mealsAddedByUserToLiked(User user) {
         return mealRepository.findAll()
                 .stream()
                 .filter(u -> u.getUser().equals(user))
+                .collect(Collectors.toList());
+    }
+
+    public boolean isMealStillLikedByUser(int mealId, User user) {
+        List<Meal> mealsLikedByUser = mealsAddedByUserToLiked(user);
+        return mealsLikedByUser
+                .stream()
+                .filter(m -> m.getMealId() == mealId)
+                .anyMatch(Meal::isStillLiked);
+    }
+
+    public void addOrRemoveMealFromLikedByUser(int mealId, User user) {
+        List<Meal> mealsLikedByUser = mealsAddedByUserToLiked(user);
+        Meal likedMeal = mealsLikedByUser
+                .stream()
+                .filter(m -> m.getMealId() == mealId)
+                .findAny()
+                .get();
+        likedMeal.setStillLiked(!likedMeal.isStillLiked());
+        mealRepository.save(likedMeal);
+    }
+
+    public boolean wasMealAddedToLikedByUser(int mealId, User user) {
+        List<Meal> meals = mealsAddedByUserToLiked(user);
+        return meals
+                .stream()
+                .anyMatch(meal -> meal.getMealId() == mealId);
+    }
+
+    public List<Meal> showMealsCurrentlyLikedByUser(User user) {
+        return mealRepository.findAll()
+                .stream()
+                .filter(u -> u.getUser().equals(user))
+                .filter(Meal::isStillLiked)
                 .toList();
     }
 }

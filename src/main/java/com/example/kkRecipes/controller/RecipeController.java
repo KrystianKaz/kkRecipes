@@ -1,6 +1,7 @@
 package com.example.kkRecipes.controller;
 
 import com.example.kkRecipes.model.Meal;
+import com.example.kkRecipes.model.User;
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchDTO;
 import com.example.kkRecipes.model.dto.complex_search.ComplexSearchValuesDTO;
@@ -33,12 +34,22 @@ public class RecipeController {
     private final UserService userService;
 
     @GetMapping("/recipes/{id}")
-    public String getRecipeById(@PathVariable int id, Model model) {
+    public String getRecipeById(@PathVariable int id, Model model, Principal principal) {
         RecipeDTO mealById = recipeService.recipeById(id);
         model.addAttribute("mealById", mealById);
 
         List<PreparationInstructionsDTO> preparationInstructionsDTOS = recipeService.preparationInstructionsByRecipeId(id);
         model.addAttribute("preps", preparationInstructionsDTOS);
+
+        if (principal != null) {
+            User user = userService.findUserByUsername(principal.getName());
+
+            boolean wasMealAddedToLikedByUser = mealService.wasMealAddedToLikedByUser(id, user);
+            model.addAttribute("wasMealAddedToLikedByUser", wasMealAddedToLikedByUser);
+
+            boolean isMealStillLikedByUser = mealService.isMealStillLikedByUser(id, user);
+            model.addAttribute("stillLiked", isMealStillLikedByUser);
+        }
 
         return "result_pages/meal";
     }
@@ -95,9 +106,15 @@ public class RecipeController {
         return "result_pages/weekly-list";
     }
 
-    @PostMapping("/recipes/{id}")
-    public RedirectView likeOrDislikeMeal(@PathVariable("id") int id, Principal principal, Meal meal) {
+    @PostMapping("/recipes/{id}/add")
+    public RedirectView addMealToLikedByUser(@PathVariable("id") int id, Principal principal, Meal meal) {
         mealService.addMealToLikedByUser(id, userService.findUserByUsername(principal.getName()), meal);
+        return new RedirectView("/recipes/{id}");
+    }
+
+    @PostMapping("/recipes/{id}/liked")
+    public RedirectView removeMealToLikedByUser(@PathVariable("id") int id, Principal principal, Meal meal) {
+        mealService.addOrRemoveMealFromLikedByUser(id, userService.findUserByUsername(principal.getName()));
         return new RedirectView("/recipes/{id}");
     }
 

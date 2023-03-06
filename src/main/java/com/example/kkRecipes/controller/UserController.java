@@ -19,13 +19,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/user")
-    public String showUsersPanel() {
+    public String showUserPanel() {
         return "user_panel/user";
     }
 
     @GetMapping("/likedMeals")
-    public String showUsersLikedRecipes(Principal principal, Model model) {
-        List<Meal> meals = mealService.showUsersLikedMeals(userService.findUserByUsername(principal.getName()));
+    public String showRecipesLikedByUser(Principal principal, Model model) {
+        List<Meal> meals = mealService.showMealsCurrentlyLikedByUser(userService.findUserByUsername(principal.getName()));
         model.addAttribute("meals", meals);
         return "user_panel/user_pages/liked-meals";
     }
