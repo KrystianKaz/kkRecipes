@@ -6,8 +6,8 @@ import lombok.Data;
 public class NutrientsSearchResultsDTO {
     private String title;
     private String image;
-    private Integer id;
-    private Integer calories;
+    private int id;
+    private int calories;
     private String fat;
     private String carbs;
     private String protein;

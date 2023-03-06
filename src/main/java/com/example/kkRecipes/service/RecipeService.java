@@ -21,11 +21,11 @@ public class RecipeService {
 
     private final RecipeClient recipeClient;
 
-    public RecipeDTO recipeById(Integer id) {
+    public RecipeDTO recipeById(int id) {
         return recipeClient.recipeById(id);
     }
 
-    public List<PreparationInstructionsDTO> preparationInstructionsByRecipeId(Integer id) {
+    public List<PreparationInstructionsDTO> preparationInstructionsByRecipeId(int id) {
         return recipeClient.preparationInstructions(id);
     }
 

@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class ComplexSearchResultsDTO {
-    private Integer id;
+    private int id;
     private String title;
     private String image;
 }

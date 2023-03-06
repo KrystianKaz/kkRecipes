@@ -27,7 +27,7 @@ public class RecipeClient {
     private final String API_KEY = "bad4e6f148a34319bfa9e6276114611c";
 //    private final String API_KEY = "3ae151c6bcb94922b73d44be38dc2bbf";
 
-    public RecipeDTO recipeById(Integer id) {
+    public RecipeDTO recipeById(int id) {
         return restTemplate.getForObject(UriUtils.getRecipeById(id) + getApiKey(), RecipeDTO.class);
     }
 
@@ -66,7 +66,7 @@ public class RecipeClient {
         return Arrays.asList(forArray);
     }
 
-    public List<PreparationInstructionsDTO> preparationInstructions(Integer id) {
+    public List<PreparationInstructionsDTO> preparationInstructions(int id) {
         PreparationInstructionsDTO[] forArray = restTemplate
                 .getForObject(UriUtils.getRecipePreparationInstructions(id) + getApiKey(),
                         PreparationInstructionsDTO[].class);

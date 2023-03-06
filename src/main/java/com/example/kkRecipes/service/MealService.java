@@ -19,7 +19,7 @@ public class MealService {
 
     public void addMealToLikedByUser(int mealId, User user, Meal meal) {
         meal.setMealId(mealId);
-        meal.setMealTitle(recipeClient.recipeById(Math.toIntExact(mealId)).getTitle());
+        meal.setMealTitle(recipeClient.recipeById(mealId).getTitle());
         meal.setUser(user);
         meal.setStillLiked(true);
         mealRepository.save(meal);

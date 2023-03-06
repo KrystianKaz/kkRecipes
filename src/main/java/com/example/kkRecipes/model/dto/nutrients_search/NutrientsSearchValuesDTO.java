@@ -6,15 +6,15 @@ import lombok.Data;
 @Data
 public class NutrientsSearchValuesDTO {
     @Min(value = 0, message = "Target calories value should be higher!")
-    private Integer minCalories;
-    private Integer maxCalories;
+    private int minCalories;
+    private int maxCalories;
     @Min(value = 0, message = "Target fat value should be higher!")
-    private Integer minFat;
-    private Integer maxFat;
+    private int minFat;
+    private int maxFat;
     @Min(value = 0, message = "Target carbohydrates value should be higher!")
-    private Integer minCarbs;
-    private Integer maxCarbs;
+    private int minCarbs;
+    private int maxCarbs;
     @Min(value = 0, message = "Target protein value should be higher!")
-    private Integer minProtein;
-    private Integer maxProtein;
+    private int minProtein;
+    private int maxProtein;
 }
