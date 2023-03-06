@@ -3,6 +3,7 @@ package com.example.kkRecipes.model;
 import com.example.kkRecipes.model.enums.UserRolesEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Component
 @Getter
+@Setter
 @Entity
 public class User {
 
@@ -37,4 +39,11 @@ public class User {
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Meal> likedMeals;
+
+    public User(final String username, final String password, final String email, final boolean active) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.active = active;
+    }
 }

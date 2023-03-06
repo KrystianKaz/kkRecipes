@@ -14,10 +14,6 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public Optional<User> findUserById(Long id) {
-        return userRepository.findById(id);
-    }
-
     public User findUserByUsername(String username) {
         return userRepository.findByUsername(username).orElseThrow(() -> new UserNotExistException(username));
     }

@@ -20,4 +20,9 @@ public class RecipeDTO {
     private boolean glutenFree;
     private boolean dairyFree;
     private boolean veryHealthy;
+
+    public RecipeDTO(final int id, final String title) {
+        this.id = id;
+        this.title = title;
+    }
 }
