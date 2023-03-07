@@ -25,4 +25,8 @@ public class RecipeDTO {
         this.id = id;
         this.title = title;
     }
+
+    public RecipeDTO(final String image) {
+        this.image = image;
+    }
 }

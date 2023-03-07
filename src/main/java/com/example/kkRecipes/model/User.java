@@ -3,6 +3,7 @@ package com.example.kkRecipes.model;
 import com.example.kkRecipes.model.enums.UserRolesEnum;
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 public class User {
 
     @Id
