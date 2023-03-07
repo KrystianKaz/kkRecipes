@@ -184,6 +184,8 @@ button:hover {
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
+    margin-top: 5px;
+    margin-bottom: 0;
 }
 
 .meal-instructions {
@@ -193,6 +195,7 @@ button:hover {
 }
 
 .meal-instructions-list {
+    width:100%;
     float: left;
     margin-top: 10px;
 }

@@ -1,10 +1,12 @@
 package com.example.kkRecipes.model.dto.recipe;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 public class RecipeDTO {
 
     private int id;

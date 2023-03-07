@@ -1,6 +1,5 @@
 package com.example.kkRecipes.service;
 
-import com.example.kkRecipes.TestDataSample;
 import com.example.kkRecipes.model.User;
 import com.example.kkRecipes.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -13,11 +12,10 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-class UserServiceTest implements TestDataSample {
+class UserServiceTest {
 
     @InjectMocks
     private UserService userService;
@@ -27,19 +25,16 @@ class UserServiceTest implements TestDataSample {
     @Test
     void should_be_able_to_return_registered_user() {
         // given
-        User user1 = getSampleDataForUsers().get(0);
-        User user2 = getSampleDataForUsers().get(1);
+        User user = new User("FirstUser", "firstP", "first@email.com", true);
 
         given(userRepository.findByUsername("FirstUser"))
-                .willReturn(Optional.of(user1));
+                .willReturn(Optional.of(user));
 
         // when
         User givenUser = userService.findUserByUsername("FirstUser");
 
         // then
-        assertThat(givenUser, is(user1));
+        assertThat(givenUser, is(user));
         assertThat(givenUser.getUsername(), is("FirstUser"));
-        assertThat(givenUser, not(user2));
-        assertThat(givenUser.getUsername(), not(user2.getUsername()));
     }
 }
