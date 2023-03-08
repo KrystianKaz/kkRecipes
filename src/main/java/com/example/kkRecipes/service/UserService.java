@@ -21,7 +21,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     public User findUserByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> new UserNotExistException(username));
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new UserNotExistException(username));
     }
 
     public void registerUser(String email, String username, String password) {
