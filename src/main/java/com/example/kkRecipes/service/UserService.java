@@ -33,7 +33,7 @@ public class UserService {
             User user = User.builder()
                     .email(emailMatcher(checkIfUserWithGivenEmailIsRegistered(email)))
                     .username(username)
-                    .password(passwordCheck(password))
+                    .password(checkIfPasswordIsNotBlank(password))
                     .active(true)
                     .accountCreationTime(LocalTime.now())
                     .accountCreationDate(LocalDate.now())
@@ -69,9 +69,9 @@ public class UserService {
         else return email;
     }
 
-    public String passwordCheck(String password) {
+    public String checkIfPasswordIsNotBlank(String password) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        if(bCryptPasswordEncoder.upgradeEncoding(password)) {
+        if(password.length() > 0) {
             return bCryptPasswordEncoder.encode(password);
         }
         else throw new WrongPasswordException();
