@@ -2,6 +2,7 @@ package com.example.kkRecipes.model;
 
 import com.example.kkRecipes.model.enums.UserRolesEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +27,10 @@ public class User {
 
     @Column(unique = true, length = 30, nullable = false)
     private String email;
+    @NotBlank
     @Column(unique = true, length = 15, nullable = false)
     private String username;
+    @NotBlank
     @Column(length = 60, nullable = false)
     private String password;
 

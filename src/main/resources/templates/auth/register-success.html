@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="css/style.css"/>
+
+<!-- Header section - Menu toolbar -->
+<div th:insert="~{dynamic/navigationMain.html}"></div>
+<!-- Header section - Menu toolbar -->
+<body>
+<div class="register-form">
+        <h3>You have been successfully registered! You can now log in by clicking button below.</h3>
+
+    <button><a href="/login">Login</a></button>
+</div>
+</body>
+
+</html>

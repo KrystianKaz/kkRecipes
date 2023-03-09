@@ -354,3 +354,39 @@ button:hover {
 .meal-like {
     margin-top: 10px;
 }
+
+.register-form {
+    position: relative;
+    display: table;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.register-form input {
+    width: 200px;
+    display: inline;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.register-form h2 {
+    font-family: "Montserrat", sans-serif;
+    font-size: x-large;
+    color: #ffffff;
+    margin-top: 10px;
+    background-color: rgb(214, 42, 42, 50%);
+    border-color: #ff0000;
+    border-style: solid;
+    padding: 10px 30px;
+    border-radius: 30px;
+}
+
+.register-form h3 {
+    margin-top: 10px;
+}
+
+.register-form button {
+    margin-top: 10px;
+}

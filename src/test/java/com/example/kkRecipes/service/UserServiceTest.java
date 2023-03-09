@@ -2,6 +2,7 @@ package com.example.kkRecipes.service;
 
 import com.example.kkRecipes.exception.CreatedUserExistException;
 import com.example.kkRecipes.exception.UserNotExistException;
+import com.example.kkRecipes.exception.WrongEmailException;
 import com.example.kkRecipes.model.User;
 import com.example.kkRecipes.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -158,22 +159,20 @@ class UserServiceTest {
         String givenWrongEmail2 = "testmail101@";
         String givenWrongEmail3 = "@mail.com";
 
-        String exception = "Wrong email format";
-
         // when
-        Throwable exception1 = assertThrows(IllegalArgumentException.class,
+        Throwable exception1 = assertThrows(WrongEmailException.class,
                 () -> userService.emailMatcher(givenWrongEmail1));
 
-        Throwable exception2 = assertThrows(IllegalArgumentException.class,
+        Throwable exception2 = assertThrows(WrongEmailException.class,
                 () -> userService.emailMatcher(givenWrongEmail2));
 
-        Throwable exception3 = assertThrows(IllegalArgumentException.class,
+        Throwable exception3 = assertThrows(WrongEmailException.class,
                 () -> userService.emailMatcher(givenWrongEmail3));
 
         // then
-        assertThat(exception1.getMessage(), is(exception));
-        assertThat(exception2.getMessage(), is(exception));
-        assertThat(exception3.getMessage(), is(exception));
+        assertThat(exception1.getMessage(), is(new WrongEmailException(givenWrongEmail1).getMessage()));
+        assertThat(exception2.getMessage(), is(new WrongEmailException(givenWrongEmail2).getMessage()));
+        assertThat(exception3.getMessage(), is(new WrongEmailException(givenWrongEmail3).getMessage()));
     }
 
 

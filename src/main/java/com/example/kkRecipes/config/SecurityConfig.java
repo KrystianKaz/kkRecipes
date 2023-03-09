@@ -34,6 +34,7 @@ public class SecurityConfig {
                 )
                 .csrf().disable()
                 .formLogin()
+                .loginPage("/login")
                 .and()
                 .logout()
                 .and()

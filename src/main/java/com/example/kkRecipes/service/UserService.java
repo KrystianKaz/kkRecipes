@@ -2,6 +2,8 @@ package com.example.kkRecipes.service;
 
 import com.example.kkRecipes.exception.CreatedUserExistException;
 import com.example.kkRecipes.exception.UserNotExistException;
+import com.example.kkRecipes.exception.WrongEmailException;
+import com.example.kkRecipes.exception.WrongPasswordException;
 import com.example.kkRecipes.model.User;
 import com.example.kkRecipes.model.enums.UserRolesEnum;
 import com.example.kkRecipes.repository.UserRepository;
@@ -31,7 +33,7 @@ public class UserService {
             User user = User.builder()
                     .email(emailMatcher(checkIfUserWithGivenEmailIsRegistered(email)))
                     .username(username)
-                    .password(passwordEncoder.encode(password))
+                    .password(passwordCheck(password))
                     .active(true)
                     .accountCreationTime(LocalTime.now())
                     .accountCreationDate(LocalDate.now())
@@ -62,8 +64,16 @@ public class UserService {
 
     public String emailMatcher(String email) {
         if (!email.matches("^[A-Za-z\\d._%+-]+@[A-Za-z\\d.-]+\\.[A-Za-z]{2,6}$")) {
-            throw new IllegalArgumentException("Wrong email format");
+            throw new WrongEmailException(email);
         }
         else return email;
+    }
+
+    public String passwordCheck(String password) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        if(bCryptPasswordEncoder.upgradeEncoding(password)) {
+            return bCryptPasswordEncoder.encode(password);
+        }
+        else throw new WrongPasswordException();
     }
 }
