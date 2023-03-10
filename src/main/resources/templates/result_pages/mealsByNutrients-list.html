@@ -22,6 +22,7 @@
 
 <!-- Meal list section begin -->
 <section class="meals">
+    <h2>Matching meals:</h2>
     <div th:each="nuts : ${nutrients}">
         <div class="meals-list">
             <h3 class="title" th:text="${nuts.title}"></h3>

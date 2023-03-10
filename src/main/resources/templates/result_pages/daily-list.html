@@ -39,6 +39,11 @@
             <h4 th:text="'Carbohydrates: ' + ${plan.nutrients.carbohydrates}"></h4>
             <h4 th:text="'Protein: ' + ${plan.nutrients.protein}"></h4>
         </div>
+        <div class="meal-like" th:if="${#authorization.expression('isAuthenticated()')}">
+            <form method="get" th:action="@{/saveDailyMealPlan}">
+                <button>Save This Diet!</button>
+            </form>
+        </div>
     </section>
     <!-- Daily Diet section end -->
 </body>

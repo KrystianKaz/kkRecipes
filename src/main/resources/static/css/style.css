@@ -217,8 +217,12 @@ button:hover {
 
 .meals-list {
     float: left;
-    width: 33.33%;
-    margin: 10px 0px;
+    width: 32%;
+    margin: 3px 3px;
+    border-color: grey;
+    border-style: outset;
+    background-color: #333333;
+    border-radius: 1rem;
 }
 
 .meals-list img {
@@ -268,6 +272,10 @@ button:hover {
     text-align: center;
     font-family: "Montserrat", sans-serif;
     color: aliceblue;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
 }
 
 .meals-nutrition-list {
@@ -353,6 +361,7 @@ button:hover {
 
 .meal-like {
     margin-top: 10px;
+    text-align: center;
 }
 
 .register-form {
@@ -389,4 +398,32 @@ button:hover {
 
 .register-form button {
     margin-top: 10px;
+}
+
+.daily-diet {
+    display: flex;
+    width: 80%;
+    position: relative;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.daily-diet h4 {
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    color: aliceblue;
+}
+
+.daily-diet th {
+    padding: 1rem;
+    padding-right: 2rem;
+}
+
+.th-description {
+    width: 30rem;
+}
+
+.user-data {
+    padding: 1rem;
 }

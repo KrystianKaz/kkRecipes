@@ -3,8 +3,10 @@ package com.example.kkRecipes.controller;
 import com.example.kkRecipes.exception.CreatedUserExistException;
 import com.example.kkRecipes.exception.WrongEmailException;
 import com.example.kkRecipes.exception.WrongPasswordException;
+import com.example.kkRecipes.model.DailyDiet;
 import com.example.kkRecipes.model.Meal;
 import com.example.kkRecipes.model.User;
+import com.example.kkRecipes.service.DailyDietService;
 import com.example.kkRecipes.service.MealService;
 import com.example.kkRecipes.service.UserService;
 import jakarta.validation.ConstraintViolationException;
@@ -25,6 +27,7 @@ public class UserController {
 
     private final MealService mealService;
     private final UserService userService;
+    private final DailyDietService dailyDietService;
 
     @GetMapping("/login")
     public String getLoginPage() {
@@ -50,10 +53,24 @@ public class UserController {
 
     @GetMapping("/likedMeals")
     public String showRecipesLikedByUser(Principal principal, Model model) {
-        List<Meal> meals = mealService.showMealsCurrentlyLikedByUser(userService.findUserByUsername(principal.getName()));
+        List<Meal> meals = mealService
+                .showMealsCurrentlyLikedByUser(userService.findUserByUsername(principal.getName()));
+
         model.addAttribute("meals", meals);
 
         return "user_panel/user_pages/liked-meals";
+    }
+
+    @GetMapping("/savedDailyDiets")
+    public String showDietsSavedByUser(Principal principal, Model model) {
+        if(principal != null) {
+            User userByUsername = userService.findUserByUsername(principal.getName());
+            List<DailyDiet> savedDietsByUser = dailyDietService.findSavedDietsByUserAndSortByOldest(userByUsername);
+
+            model.addAttribute("savedDiets", savedDietsByUser);
+        }
+
+        return "user_panel/user_pages/saved-daily-diets";
     }
 
     @ExceptionHandler({CreatedUserExistException.class, WrongEmailException.class,

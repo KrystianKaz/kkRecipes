@@ -3,10 +3,7 @@ package com.example.kkRecipes.model;
 import com.example.kkRecipes.model.enums.UserRolesEnum;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -19,6 +16,7 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
     @Id
@@ -52,19 +50,5 @@ public class User {
         this.password = password;
         this.email = email;
         this.active = active;
-    }
-
-    public User(final long id, final String email, final String username, final String password, final boolean active,
-                final LocalTime accountCreationTime, final LocalDate accountCreationDate, final UserRolesEnum userRoles,
-                final List<Meal> likedMeals) {
-        this.id = id;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.active = active;
-        this.accountCreationTime = accountCreationTime;
-        this.accountCreationDate = accountCreationDate;
-        this.userRoles = userRoles;
-        this.likedMeals = likedMeals;
     }
 }

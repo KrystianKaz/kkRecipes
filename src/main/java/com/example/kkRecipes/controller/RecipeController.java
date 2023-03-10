@@ -1,5 +1,6 @@
 package com.example.kkRecipes.controller;
 
+import com.example.kkRecipes.model.DailyDiet;
 import com.example.kkRecipes.model.Meal;
 import com.example.kkRecipes.model.User;
 import com.example.kkRecipes.model.dto.analyzed_instructions.PreparationInstructionsDTO;
@@ -11,15 +12,15 @@ import com.example.kkRecipes.model.dto.meal_plan.MealPlanWeekDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
+import com.example.kkRecipes.service.DailyDietService;
 import com.example.kkRecipes.service.MealService;
 import com.example.kkRecipes.service.RecipeService;
 import com.example.kkRecipes.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -32,6 +33,7 @@ public class RecipeController {
     private final RecipeService recipeService;
     private final MealService mealService;
     private final UserService userService;
+    private final DailyDietService dailyDietService;
 
     @GetMapping("/recipes/{id}")
     public String getRecipeById(@PathVariable int id, Model model, Principal principal) {
@@ -86,11 +88,35 @@ public class RecipeController {
     }
 
     @GetMapping("/dailyMealPlan")
-    public String generatedDailyMealPlanPage(MealPlanSearchValuesDTO mealPlanSearchValuesDTO, Model model) {
+    public String generatedDailyMealPlanPage(MealPlanSearchValuesDTO mealPlanSearchValuesDTO,
+                                             HttpSession session,
+                                             Model model) {
         MealPlanDTO mealPlanDTO = recipeService.generateDailyMealPlan(mealPlanSearchValuesDTO);
+        session.setAttribute("plan", mealPlanDTO);
         model.addAttribute("plan", mealPlanDTO);
 
         return "result_pages/daily-list";
+    }
+
+    @GetMapping("/saveDailyMealPlan")
+    public String getDailyPlanSavingPage(HttpSession session, Model model) {
+        MealPlanDTO mealPlanDTO = (MealPlanDTO) session.getAttribute("plan"); // pobieranie obiektu z sesji
+        model.addAttribute("plan", mealPlanDTO);
+
+        return "daily_plan/daily-saving";
+    }
+
+
+    @PostMapping("/saveDailyMealPlan")
+    public RedirectView saveDailyMealPlanToUser(DailyDiet diet, HttpSession session, Principal principal) {
+
+        MealPlanDTO mealPlanDTO = (MealPlanDTO) session.getAttribute("plan");
+        User user = userService.findUserByUsername(principal.getName());
+
+        dailyDietService.saveDailyDiet(diet, mealPlanDTO, user);
+        session.removeAttribute("plan");
+
+        return new RedirectView("/user");
     }
 
     @GetMapping("/generateWeeklyMealPlan")

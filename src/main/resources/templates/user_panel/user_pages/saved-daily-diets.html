@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="css/style.css"/>
+
+<!-- Header section - Menu toolbar -->
+<div th:insert="~{dynamic/navigationMain.html}"></div>
+<!-- Header section - Menu toolbar -->
+
+<body>
+<section class="meals">
+    <h2>Your saved daily diet plans:</h2>
+    <div th:each="diet : ${savedDiets}">
+        <div class="meals-list">
+            <h3 class="title" th:text="${diet.date}"></h3>
+            <div class="meals-nutrition">
+                <h4 th:text="${diet.description}"></h4>
+                <div class="meals-nutrition-list">
+                    <h4 th:text="${diet.calories} + ' kcal'"></h4>
+                    <h4 th:text="', Fat: ' + ${diet.fat}"></h4>
+                    <h4 th:text="', Carbs: ' + ${diet.carbohydrates}"></h4>
+                    <h4 th:text="', Proteins: ' + ${diet.protein}"></h4>
+                </div>
+                <a th:href="@{/recipes/{id}(id=${diet.firstMealId})}" target="_blank"><img
+                        th:src="'https://spoonacular.com/recipeImages/' + ${diet.firstMealId} + '-312x231.jpg'"></a>
+                <a th:href="@{/recipes/{id}(id=${diet.secondMealId})}" target="_blank"><img
+                        th:src="'https://spoonacular.com/recipeImages/' + ${diet.secondMealId} + '-312x231.jpg'"></a>
+                <a th:href="@{/recipes/{id}(id=${diet.thirdMealId})}" target="_blank"><img
+                        th:src="'https://spoonacular.com/recipeImages/' + ${diet.thirdMealId} + '-312x231.jpg'"></a>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+
+</html>
