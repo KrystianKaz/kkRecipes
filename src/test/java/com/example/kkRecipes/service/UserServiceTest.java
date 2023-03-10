@@ -3,6 +3,7 @@ package com.example.kkRecipes.service;
 import com.example.kkRecipes.exception.CreatedUserExistException;
 import com.example.kkRecipes.exception.UserNotExistException;
 import com.example.kkRecipes.exception.WrongEmailException;
+import com.example.kkRecipes.exception.WrongPasswordException;
 import com.example.kkRecipes.model.User;
 import com.example.kkRecipes.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -173,6 +174,19 @@ class UserServiceTest {
         assertThat(exception1.getMessage(), is(new WrongEmailException(givenWrongEmail1).getMessage()));
         assertThat(exception2.getMessage(), is(new WrongEmailException(givenWrongEmail2).getMessage()));
         assertThat(exception3.getMessage(), is(new WrongEmailException(givenWrongEmail3).getMessage()));
+    }
+
+    @Test
+    void should_throw_exception_when_giving_blank_password() {
+        // given
+        String blankPassword = "";
+
+        // when
+        Throwable exception = assertThrows(WrongPasswordException.class,
+                () -> userService.checkIfPasswordIsNotBlank(blankPassword));
+
+        // then
+        assertThat(exception.getMessage(), is(new WrongPasswordException().getMessage()));
     }
 
 

@@ -162,6 +162,27 @@ class MealServiceTest {
     }
 
     @Test
+    void should_return_false_when_meal_was_not_added_to_liked_by_user () {
+        // given
+        User user = getUser();
+
+        Meal notAddedMealToLiked = getMeal(1234, "Fried Chicken");
+
+        Meal addedMealToLiked = getMeal(1233, "Vegetarian Burger");
+        addedMealToLiked.setUser(user);
+
+        List<Meal> likedMealsList = List.of(addedMealToLiked);
+
+        // when
+        when(mealService.mealsAddedByUserToLiked(user))
+                .thenReturn(likedMealsList);
+        boolean wasMealAddedToLikedByUser = mealService.wasMealAddedToLikedByUser(notAddedMealToLiked.getMealId(), user);
+
+        // then
+        assertThat(wasMealAddedToLikedByUser, is(false));
+    }
+
+    @Test
     void should_return_list_of_currently_liked_meals_by_user() {
         // given
         User user = getUser();
