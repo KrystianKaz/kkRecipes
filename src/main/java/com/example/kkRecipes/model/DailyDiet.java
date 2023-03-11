@@ -28,4 +28,5 @@ public class DailyDiet {
     private double carbohydrates;
     private double protein;
     private long addedByUser;
+    private boolean completed;
 }

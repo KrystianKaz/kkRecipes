@@ -10,7 +10,24 @@
 
 <body>
 <section class="meals">
-    <h2>Your saved daily diet plans:</h2>
+    <form method="get" th:action="@{/savedDailyDiets}">
+        <div class="meals">
+            <h2>Your saved daily diet plans:</h2>
+            <select name="size">
+                <option th:selected="${size == 3}" value="3">3</option>
+                <option th:selected="${size == 6}" value="6">6</option>
+            </select>
+            <select name="isCompleted">
+                <option th:selected="${isCompleted == false}" value="false">Not Completed</option>
+                <option th:selected="${isCompleted == true}" value="true">Completed</option>
+            </select>
+            <select name="reverseOrder">
+                <option th:selected="${reverseOrder == false}" value="false">From Oldest</option>
+                <option th:selected="${reverseOrder == true}" value="true">From Newest</option>
+            </select>
+            <button>sort</button>
+        </div>
+    </form>
     <div th:each="diet : ${savedDiets}">
         <div class="meals-list">
             <h3 class="title" th:text="${diet.date}"></h3>
@@ -28,6 +45,9 @@
                         th:src="'https://spoonacular.com/recipeImages/' + ${diet.secondMealId} + '-312x231.jpg'"></a>
                 <a th:href="@{/recipes/{id}(id=${diet.thirdMealId})}" target="_blank"><img
                         th:src="'https://spoonacular.com/recipeImages/' + ${diet.thirdMealId} + '-312x231.jpg'"></a>
+                <form method="post" th:action="@{/changeCompletionStatus/{id}(id=${diet.id})}">
+                    <button>Completed!</button>
+                </form>
             </div>
         </div>
     </div>

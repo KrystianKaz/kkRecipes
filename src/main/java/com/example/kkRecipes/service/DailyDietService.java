@@ -5,11 +5,11 @@ import com.example.kkRecipes.model.User;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
 import com.example.kkRecipes.repository.DailyDietRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
@@ -26,13 +26,28 @@ public class DailyDietService {
         dailyDiet.setSecondMealId(mealPlanDTO.getMeals().get(1).getId());
         dailyDiet.setThirdMealId(mealPlanDTO.getMeals().get(2).getId());
         dailyDiet.setAddedByUser(user.getId());
+        dailyDiet.setCompleted(false);
         dailyDietRepository.save(dailyDiet);
     }
 
-    public List<DailyDiet> findSavedDietsByUserAndSortByOldest(User user) {
-        return dailyDietRepository.findAll().stream()
-                .filter(u -> u.getAddedByUser() == user.getId())
-                .sorted(Comparator.comparing(DailyDiet::getDate))
-                .collect(Collectors.toList());
+    public Page<DailyDiet> findSavedUserDietsAndPageOrSortThem(Pageable pageable,
+                                                               User user,
+                                                               boolean isCompleted,
+                                                               boolean reverseOrder) {
+        Sort sort = Sort.by("date");
+        if (reverseOrder) {
+            sort = sort.descending();
+        } else sort.ascending();
+
+        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+
+        return dailyDietRepository.findAllByAddedByUserAndCompleted(user.getId(), isCompleted, sortedPageable);
+    }
+
+    public void changeDailyMealPlanCompletionStatus(long id) {
+        //todo - create own exception, and feature that user can only changes own diets
+        DailyDiet dailyDiet = dailyDietRepository.findById(id).orElseThrow();
+        dailyDiet.setCompleted(!dailyDiet.isCompleted());
+        dailyDietRepository.save(dailyDiet);
     }
 }
