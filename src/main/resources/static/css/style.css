@@ -52,7 +52,7 @@ header {
 }
 
 .navigation_links li a:hover {
-    color: orange
+    color: orange;
 }
 
 button {
@@ -426,4 +426,51 @@ button:hover {
 
 .user-data {
     padding: 1rem;
+}
+
+.diets-filtering {
+    display: flex;
+    justify-content: center;
+}
+
+.diets-filtering select {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.diets-filtering input {
+    font-family: "Montserrat", sans-serif;
+    padding: 0 1rem;
+    border-radius: 1rem;
+    border-style: none;
+    margin-left: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: rgb(184, 99, 38);
+    font-size: larger;
+}
+
+.diets-filtering input:hover {
+    background-color: rgb(245, 102, 0);
+    transition: all 0.3s ease 0.0s;
+}
+
+.diets-pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.diets-pagination-numbers {
+    margin: 0.5rem 0.5rem;
+    align-self: center;
+}
+
+.active {
+    color: #ff9900;
+}
+
+.daily-diets button {
+    margin: auto;
+    display: flex;
 }

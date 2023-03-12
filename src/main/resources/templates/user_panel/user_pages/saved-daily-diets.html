@@ -13,21 +13,46 @@
     <form method="get" th:action="@{/savedDailyDiets}">
         <div class="meals">
             <h2>Your saved daily diet plans:</h2>
-            <select name="size">
-                <option th:selected="${size == 3}" value="3">3</option>
-                <option th:selected="${size == 6}" value="6">6</option>
-            </select>
-            <select name="isCompleted">
-                <option th:selected="${isCompleted == false}" value="false">Not Completed</option>
-                <option th:selected="${isCompleted == true}" value="true">Completed</option>
-            </select>
-            <select name="reverseOrder">
-                <option th:selected="${reverseOrder == false}" value="false">From Oldest</option>
-                <option th:selected="${reverseOrder == true}" value="true">From Newest</option>
-            </select>
-            <button>sort</button>
+            <div class="diets-filtering">
+                <select name="size">
+                    <option th:selected="${size == 3}" value="3">3</option>
+                    <option th:selected="${size == 6}" value="6">6</option>
+                </select>
+                <select name="isCompleted">
+                    <option th:selected="${isCompleted == false}" value="false">Not Completed</option>
+                    <option th:selected="${isCompleted == true}" value="true">Completed</option>
+                </select>
+                <select name="reverseOrder">
+                    <option th:selected="${reverseOrder == false}" value="false">From Oldest</option>
+                    <option th:selected="${reverseOrder == true}" value="true">From Newest</option>
+                </select>
+                <input type="submit" value="Sort">
+            </div>
         </div>
     </form>
+
+    <div th:unless="${totalPages == 0}" class="diets-pagination">
+        <div class="diets-pagination-numbers" th:if="${pageNumber > 0}">
+            <a th:href="@{${'/savedDailyDiets'}(size=${size}, isCompleted=${isCompleted}, reverseOrder=${reverseOrder}, page=${pageNumber - 1})}"
+               th:text="'<'"></a>
+        </div>
+        <div class="diets-pagination-numbers" th:each="pages : ${#numbers.sequence(0, totalPages-1)}">
+            <div class="diets-pagination-numbers" th:if="${pageNumber == pages}">
+                <a class="active"
+                   th:href="@{${'/savedDailyDiets'}(size=${size}, isCompleted=${isCompleted}, reverseOrder=${reverseOrder}, page=${pages})}"
+                   th:text="${pages + 1}"></a>
+            </div>
+            <div class="diets-pagination-numbers" th:unless="${pageNumber == pages}">
+                <a th:href="@{${'/savedDailyDiets'}(size=${size}, isCompleted=${isCompleted}, reverseOrder=${reverseOrder}, page=${pages})}"
+                   th:text="${pages + 1}"></a>
+            </div>
+        </div>
+        <div class="diets-pagination-numbers" th:if="${pageNumber < totalPages - 1}">
+            <a th:href="@{${'/savedDailyDiets'}(size=${size}, isCompleted=${isCompleted}, reverseOrder=${reverseOrder}, page=${pageNumber + 1})}"
+               th:text="'>'"></a>
+        </div>
+    </div>
+
     <div th:each="diet : ${savedDiets}">
         <div class="meals-list">
             <h3 class="title" th:text="${diet.date}"></h3>
@@ -45,10 +70,12 @@
                         th:src="'https://spoonacular.com/recipeImages/' + ${diet.secondMealId} + '-312x231.jpg'"></a>
                 <a th:href="@{/recipes/{id}(id=${diet.thirdMealId})}" target="_blank"><img
                         th:src="'https://spoonacular.com/recipeImages/' + ${diet.thirdMealId} + '-312x231.jpg'"></a>
-                <form method="post" th:action="@{/changeCompletionStatus/{id}(id=${diet.id})}">
-                    <button>Completed!</button>
-                </form>
             </div>
+            <form method="post" th:action="@{/changeCompletionStatus/{id}(id=${diet.id})}">
+                <div class="daily-diets">
+                    <button>Completed!</button>
+                </div>
+            </form>
         </div>
     </div>
 </section>

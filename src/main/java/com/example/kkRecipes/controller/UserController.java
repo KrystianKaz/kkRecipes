@@ -81,6 +81,9 @@ public class UserController {
         Page<DailyDiet> savedDietsByUser = dailyDietService
                 .findSavedUserDietsAndPageOrSortThem(pageable, userByUsername, isCompleted, reverseOrder);
         model.addAttribute("savedDiets", savedDietsByUser);
+        model.addAttribute("totalPages", savedDietsByUser.getTotalPages());
+        model.addAttribute("pageNumber", page);
+
 
         return "user_panel/user_pages/saved-daily-diets";
     }
