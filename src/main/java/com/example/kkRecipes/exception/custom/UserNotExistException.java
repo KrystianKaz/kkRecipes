@@ -1,4 +1,4 @@
-package com.example.kkRecipes.exception;
+package com.example.kkRecipes.exception.custom;
 
 public class UserNotExistException extends RuntimeException{
 

@@ -1,5 +1,6 @@
 package com.example.kkRecipes.service;
 
+import com.example.kkRecipes.exception.custom.IllegalOperationException;
 import com.example.kkRecipes.model.DailyDiet;
 import com.example.kkRecipes.model.User;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
@@ -44,10 +45,13 @@ public class DailyDietService {
         return dailyDietRepository.findAllByAddedByUserAndCompleted(user.getId(), isCompleted, sortedPageable);
     }
 
-    public void changeDailyMealPlanCompletionStatus(long id) {
-        //todo - create own exception, and feature that user can only changes own diets
-        DailyDiet dailyDiet = dailyDietRepository.findById(id).orElseThrow();
-        dailyDiet.setCompleted(!dailyDiet.isCompleted());
-        dailyDietRepository.save(dailyDiet);
+    public void changeDailyMealPlanCompletionStatus(long id, User user) {
+        DailyDiet dailyDiet = dailyDietRepository.findById(id)
+                .orElseThrow(() -> new NullPointerException("Daily diet with given ID not found!"));
+
+        if (dailyDiet.getAddedByUser() == user.getId()) {
+            dailyDiet.setCompleted(!dailyDiet.isCompleted());
+            dailyDietRepository.save(dailyDiet);
+        } else throw new IllegalOperationException();
     }
 }

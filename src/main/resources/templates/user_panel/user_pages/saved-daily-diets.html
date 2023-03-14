@@ -31,7 +31,7 @@
         </div>
     </form>
 
-    <div th:unless="${totalPages == 0}" class="diets-pagination">
+    <div class="diets-pagination" th:unless="${totalPages == 0}" >
         <div class="diets-pagination-numbers" th:if="${pageNumber > 0}">
             <a th:href="@{${'/savedDailyDiets'}(size=${size}, isCompleted=${isCompleted}, reverseOrder=${reverseOrder}, page=${pageNumber - 1})}"
                th:text="'<'"></a>

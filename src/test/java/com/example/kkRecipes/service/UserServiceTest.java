@@ -1,9 +1,9 @@
 package com.example.kkRecipes.service;
 
-import com.example.kkRecipes.exception.CreatedUserExistException;
-import com.example.kkRecipes.exception.UserNotExistException;
-import com.example.kkRecipes.exception.WrongEmailException;
-import com.example.kkRecipes.exception.WrongPasswordException;
+import com.example.kkRecipes.exception.custom.CreatedUserExistException;
+import com.example.kkRecipes.exception.custom.UserNotExistException;
+import com.example.kkRecipes.exception.custom.WrongEmailException;
+import com.example.kkRecipes.exception.custom.WrongPasswordException;
 import com.example.kkRecipes.model.User;
 import com.example.kkRecipes.repository.UserRepository;
 import org.junit.jupiter.api.Test;

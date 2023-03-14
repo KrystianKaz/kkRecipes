@@ -1,8 +1,8 @@
 package com.example.kkRecipes.controller;
 
-import com.example.kkRecipes.exception.CreatedUserExistException;
-import com.example.kkRecipes.exception.WrongEmailException;
-import com.example.kkRecipes.exception.WrongPasswordException;
+import com.example.kkRecipes.exception.custom.CreatedUserExistException;
+import com.example.kkRecipes.exception.custom.WrongEmailException;
+import com.example.kkRecipes.exception.custom.WrongPasswordException;
 import com.example.kkRecipes.model.DailyDiet;
 import com.example.kkRecipes.model.Meal;
 import com.example.kkRecipes.model.User;
@@ -89,9 +89,10 @@ public class UserController {
     }
 
     @PostMapping("/changeCompletionStatus/{id}")
-    public RedirectView changeCompletionStatusOfDailyPlan(@PathVariable long id) {
+    public RedirectView changeCompletionStatusOfDailyPlan(@PathVariable long id, Principal principal) {
+        User user = userService.findUserByUsername(principal.getName());
 
-        dailyDietService.changeDailyMealPlanCompletionStatus(id);
+        dailyDietService.changeDailyMealPlanCompletionStatus(id, user);
 
         return new RedirectView("/savedDailyDiets");
     }

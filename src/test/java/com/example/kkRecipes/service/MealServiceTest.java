@@ -31,7 +31,7 @@ class MealServiceTest {
     private RecipeClient recipeClient;
 
     @Test
-    void should_add_meal_to_liked_by_user() {
+    void should_save_meal_to_liked_by_user() {
         // given
         User user = getUser();
 
