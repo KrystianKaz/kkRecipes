@@ -8,21 +8,13 @@ import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanWeekDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
-import com.example.kkRecipes.model.dto.recipe.AmountUnitDTO;
-import com.example.kkRecipes.model.dto.recipe.ExtendedIngredientsDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
 import com.example.kkRecipes.model.dto.units.ConvertedUnitsDTO;
 import com.example.kkRecipes.webclient.RecipeClient;
 import lombok.AllArgsConstructor;
-import org.springframework.core.io.Resource;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.net.URL;
-import java.text.NumberFormat;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 @AllArgsConstructor

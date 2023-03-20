@@ -26,16 +26,20 @@
 
 <!-- Meal list section begin -->
 <section class="meals">
-    <h2>Matching meals:</h2>
-    <div th:each="meal : ${meals.results}">
-        <div class="meals-list">
-            <h3 th:text="${meal.title}" th:title="${meal.title}"></h3>
-            <div class="img-hover-zoom img-hover-zoom--brightness img-hover-zoom--brightness:hover">
-                <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank"><img th:src="${meal.image}"></a>
+    <div th:unless="${meals.results.size() == 0}">
+        <h2>Matching meals:</h2>
+        <div th:each="meal : ${meals.results}">
+            <div class="meals-list">
+                <h3 th:text="${meal.title}" th:title="${meal.title}"></h3>
+                <div class="img-hover-zoom img-hover-zoom--brightness img-hover-zoom--brightness:hover">
+                    <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank"><img th:src="${meal.image}"></a>
+                </div>
+                <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank">Get Recipe</a>
             </div>
-            <a th:href="@{/recipes/{id}(id=${meal.id})}" target="_blank">Get Recipe</a>
         </div>
     </div>
+    <div th:if="${meals.results.size() == 0}">
+        <h2>No matching meals found</h2>
     </div>
 </section>
 <!-- Meal list section end -->

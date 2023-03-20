@@ -26,22 +26,27 @@
 
 <!-- Meal list section begin -->
 <section class="meals">
-    <h2>Matching meals:</h2>
-    <div th:each="nuts : ${nutrients}">
-        <div class="meals-list">
-            <h3 th:text="${nuts.title}" th:title="${nuts.title}"></h3>
-            <div class="meals-nutrition">
-                <h4>Nutritions (Per Serving):</h4>
-                <div class="meals-nutrition-list">
-                    <h4 th:text="'Kcal: ' + ${nuts.calories}"></h4>
-                    <h4 th:text="'Fat: ' + ${nuts.fat}"></h4>
-                    <h4 th:text="'Carbs: ' + ${nuts.carbs}"></h4>
-                    <h4 th:text="'Proteins: ' + ${nuts.protein}"></h4>
+    <div th:unless="${nutrients.size() == 0}">
+        <h2>Matching meals:</h2>
+        <div th:each="nuts : ${nutrients}">
+            <div class="meals-list">
+                <h3 th:text="${nuts.title}" th:title="${nuts.title}"></h3>
+                <div class="meals-nutrition">
+                    <h4>Nutritions (Per Serving):</h4>
+                    <div class="meals-nutrition-list">
+                        <h4 th:text="'Kcal: ' + ${nuts.calories}"></h4>
+                        <h4 th:text="'Fat: ' + ${nuts.fat}"></h4>
+                        <h4 th:text="'Carbs: ' + ${nuts.carbs}"></h4>
+                        <h4 th:text="'Proteins: ' + ${nuts.protein}"></h4>
+                    </div>
+                    <a th:href="@{/recipes/{id}(id=${nuts.id})}" target="_blank"><img th:src="${nuts.image}"></a>
+                    <a class="btn btn-for-list" th:href="@{/recipes/{id}(id=${nuts.id})}" target="_blank">Get Recipe</a>
                 </div>
-                <a th:href="@{/recipes/{id}(id=${nuts.id})}" target="_blank"><img th:src="${nuts.image}"></a>
-                <a class="btn btn-for-list" th:href="@{/recipes/{id}(id=${nuts.id})}" target="_blank">Get Recipe</a>
             </div>
         </div>
+    </div>
+    <div th:if="${nutrients.size() == 0}">
+        <h2>No matching meals found</h2>
     </div>
 </section>
 <!-- Meal list section end -->
