@@ -2,27 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style.css"/>
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <!-- Hero Section begin -->
-    <section class="hero-img2">
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img2">
         <div class="hero-wrapper">
-            <h1>Meals with nutrients</h1>
-            <p>
-                Find recipes with nutritional values!
-            </p>
+            <div class="hero-wrapper-text">
+                <h1>Meals with nutrients</h1>
+                <p>
+                    Find recipes with nutritional values!
+                </p>
+            </div>
         </div>
-    </section>
-    <!-- Hero Section end -->
+    </div>
+</section>
+<!-- Hero Section end -->
 
-    <!-- Search By Nutrition section begin -->
+<!-- Search By Nutrition section begin -->
+<section class="search">
     <div class="search-complex">
-        <form method="get" th:action="@{/foundByNutrients}">
+        <form class="search-form" method="get" th:action="@{/foundByNutrients}">
             <h3>Minimum calories: </h3><input name="minCalories" value="0">
             <h3>Maximum calories: </h3><input name="maxCalories" value="550">
             <h3>Minimum fat: </h3><input name="minFat" value="0">
@@ -34,7 +39,13 @@
             <button>Search</button>
         </form>
     </div>
-    <!-- Search By Nutrition section end -->
-</body>
+</section>
+<!-- Search By Nutrition section end -->
 
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+</body>
 </html>

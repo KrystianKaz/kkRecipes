@@ -2,27 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style.css"/>
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <!-- Hero Section begin -->
-    <section class="hero-img4">
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img4">
         <div class="hero-wrapper">
-            <h1>Weekly Meal Plan Generator</h1>
-            <p>
-                Generate your 3-meals per day weekly plan!
-            </p>
+            <div class="hero-wrapper-text">
+                <h1>Weekly Meal Plan Generator</h1>
+                <p>
+                    Generate your 3-meals per day weekly plan!
+                </p>
+            </div>
         </div>
-    </section>
-    <!-- Hero Section end -->
+    </div>
+</section>
+<!-- Hero Section end -->
 
-    <!-- Weekly Generator section begin -->
+<!-- Weekly Generator section begin -->
+<section class="search">
     <div class="search-complex">
-        <form method="get" th:action="@{/weeklyMealPlan}">
+        <form class="search-form" method="get" th:action="@{/weeklyMealPlan}">
             <h3>Calories: </h3><input name="targetCalories" value="2000">
             <h3>Diet:</h3>
             <label class="select">
@@ -44,8 +49,14 @@
             <button>Generate</button>
         </form>
     </div>
-    <!-- Weekly Generator section enc -->
+</section>
+<!-- Weekly Generator section end -->
+
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
 
 </body>
-
 </html>

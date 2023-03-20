@@ -2,27 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style.css"/>
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <!-- Hero Section begin -->
-    <section class="hero-img3">
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img3">
         <div class="hero-wrapper">
-            <h1>Daily Meal Plan Generator</h1>
-            <p>
-                Generate your 3-meals daily plan!
-            </p>
+            <div class="hero-wrapper-text">
+                <h1>Daily Meal Plan Generator</h1>
+                <p>
+                    Generate your 3-meals daily plan!
+                </p>
+            </div>
         </div>
-    </section>
-    <!-- Hero Section end -->
+    </div>
+</section>
+<!-- Hero Section end -->
 
-    <!-- Daily Generator section begin -->
+<!-- Daily Generator section begin -->
+<section class="search">
     <div class="search-complex">
-        <form method="get" th:action="@{/dailyMealPlan}">
+        <form class="search-form" method="get" th:action="@{/dailyMealPlan}">
             <h3>Calories: </h3><input name="targetCalories" value="2000">
             <h3>Diet:</h3>
             <label class="select">
@@ -44,7 +49,13 @@
             <button>Generate</button>
         </form>
     </div>
-    <!-- Daily Generator section begin -->
-</body>
+</section>
+<!-- Daily Generator section end -->
 
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+</body>
 </html>

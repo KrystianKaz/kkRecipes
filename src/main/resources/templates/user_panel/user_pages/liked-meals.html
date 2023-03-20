@@ -10,12 +10,16 @@
 
 <body>
 <!-- Hero Section begin -->
-<section class="hero-img">
-    <div class="hero-wrapper">
-        <h1>Favourite meals</h1>
-        <p>
-            Place to hold your recipe book!
-        </p>
+<section class="hero">
+    <div class="hero-img">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Favourite meals</h1>
+                <p>
+                    Place to hold your recipe book!
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 <!-- Hero Section end -->
@@ -25,9 +29,10 @@
     <h2>Your favourite meals:</h2>
     <div th:each="meal : ${meals}">
         <div class="meals-list">
-            <h3 th:text="${meal.mealTitle}"></h3>
+            <h3 th:text="${meal.mealTitle}" th:title="${meal.mealTitle}"></h3>
             <div class="img-hover-zoom img-hover-zoom--brightness img-hover-zoom--brightness:hover">
-                <a th:href="@{/recipes/{id}(id=${meal.mealId})}" target="_blank"><img th:src="'https://spoonacular.com/recipeImages/' + ${meal.mealId} + '-312x231.jpg'"></a>
+                <a th:href="@{/recipes/{id}(id=${meal.mealId})}" target="_blank"><img
+                        th:src="'https://spoonacular.com/recipeImages/' + ${meal.mealId} + '-312x231.jpg'"></a>
             </div>
             <a th:href="@{/recipes/{id}(id=${meal.mealId})}" target="_blank">Get Recipe</a>
         </div>
@@ -35,5 +40,12 @@
     </div>
 </section>
 <!-- Meal list section end -->
+
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
 </body>
 </html>

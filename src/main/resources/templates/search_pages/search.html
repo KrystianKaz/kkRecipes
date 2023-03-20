@@ -2,27 +2,32 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style.css"/>
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <!-- Hero Section begin -->
-    <section class="hero-img">
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img">
         <div class="hero-wrapper">
-            <h1>Complex Search</h1>
-            <p>
-                Find food that you will be inspired in!
-            </p>
+            <div class="hero-wrapper-text">
+                <h1>Complex Search</h1>
+                <p>
+                    Find food that you will be inspired in!
+                </p>
+            </div>
         </div>
-    </section>
-    <!-- Hero Section end -->
+    </div>
+</section>
+<!-- Hero Section end -->
 
-    <!-- Complex Search section begin -->
+<!-- Complex Search section begin -->
+<section class="search">
     <div class="search-complex">
-        <form method="get" th:action="@{/complexSearch}">
+        <form class="search-form" method="get" th:action="@{/complexSearch}">
             <h3>Search query</h3>
             <input name="query" placeholder="e.g. chicken">
             <h3>Cuisine:</h3>
@@ -118,7 +123,14 @@
             <button>Search</button>
         </form>
     </div>
-    <!-- Complex Search section end -->
-</body>
+</section>
+<!-- Complex Search section end -->
 
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
+</body>
 </html>

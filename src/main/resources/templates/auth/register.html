@@ -9,11 +9,27 @@
 <!-- Header section - Menu toolbar -->
 
 <body>
-<div class="register-form">
-    <div th:if="${wrongData != null}">
-        <h2 th:text="${wrongData}"></h2>
-    </div>
 
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img3">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Daily Meal Plan Generator</h1>
+                <p>
+                    Generate your 3-meals daily plan!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section end -->
+
+<!-- Register Section begin-->
+<div class="exception" th:if="${wrongData != null}">
+    <h2 th:text="${wrongData}"></h2>
+</div>
+<div class="register-form">
     <form method="post" th:action="@{/register}">
         <div>
             <h3>Username: </h3>
@@ -30,6 +46,14 @@
         <button>Sign Up</button>
     </form>
 </div>
+<!-- Register Section end-->
+
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
 </body>
 
 </html>

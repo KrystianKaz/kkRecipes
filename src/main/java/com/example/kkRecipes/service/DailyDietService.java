@@ -45,13 +45,26 @@ public class DailyDietService {
         return dailyDietRepository.findAllByAddedByUserAndCompleted(user.getId(), isCompleted, sortedPageable);
     }
 
-    public void changeDailyMealPlanCompletionStatus(long id, User user) {
-        DailyDiet dailyDiet = dailyDietRepository.findById(id)
-                .orElseThrow(() -> new NullPointerException("Daily diet with given ID not found!"));
+    public void changeDailyMealPlanCompletionStatus(long dailyPlanId, User user) {
+        DailyDiet dailyDiet = getDailyDiet(dailyPlanId);
 
         if (dailyDiet.getAddedByUser() == user.getId()) {
             dailyDiet.setCompleted(!dailyDiet.isCompleted());
             dailyDietRepository.save(dailyDiet);
         } else throw new IllegalOperationException();
+    }
+
+    public void deleteDailyMealPlan(long dailyPlanId, User user) {
+        DailyDiet dailyDiet = getDailyDiet(dailyPlanId);
+
+        if (dailyDiet.getAddedByUser() == user.getId()) {
+            dailyDietRepository.delete(dailyDiet);
+        } else throw new IllegalOperationException();
+    }
+
+
+    private DailyDiet getDailyDiet(final long id) {
+        return dailyDietRepository.findById(id)
+                .orElseThrow(() -> new NullPointerException("Daily diet with given ID not found!"));
     }
 }

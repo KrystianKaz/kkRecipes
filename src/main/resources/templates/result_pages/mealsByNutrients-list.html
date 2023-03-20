@@ -10,12 +10,16 @@
 
 <body>
 <!-- Hero Section begin -->
-<section class="hero-img2">
-    <div class="hero-wrapper">
-        <h1>Meals with nutritions</h1>
-        <p>
-            Meals with nutritional values!
-        </p>
+<section class="hero">
+    <div class="hero-img2">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Meals with nutritions</h1>
+                <p>
+                    Meals with nutritional values!
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 <!-- Hero Section end -->
@@ -25,22 +29,28 @@
     <h2>Matching meals:</h2>
     <div th:each="nuts : ${nutrients}">
         <div class="meals-list">
-            <h3 class="title" th:text="${nuts.title}"></h3>
+            <h3 th:text="${nuts.title}" th:title="${nuts.title}"></h3>
             <div class="meals-nutrition">
                 <h4>Nutritions (Per Serving):</h4>
                 <div class="meals-nutrition-list">
-                    <h4 th:text="${nuts.calories} + ' kcal'"></h4>
-                    <h4 th:text="', Fat: ' + ${nuts.fat}"></h4>
-                    <h4 th:text="', Carbs: ' + ${nuts.carbs}"></h4>
-                    <h4 th:text="', Proteins: ' + ${nuts.protein}"></h4>
+                    <h4 th:text="'Kcal: ' + ${nuts.calories}"></h4>
+                    <h4 th:text="'Fat: ' + ${nuts.fat}"></h4>
+                    <h4 th:text="'Carbs: ' + ${nuts.carbs}"></h4>
+                    <h4 th:text="'Proteins: ' + ${nuts.protein}"></h4>
                 </div>
                 <a th:href="@{/recipes/{id}(id=${nuts.id})}" target="_blank"><img th:src="${nuts.image}"></a>
-                    <a class="btn btn-for-list" th:href="@{/recipes/{id}(id=${nuts.id})}" target="_blank">Get Recipe</a>
+                <a class="btn btn-for-list" th:href="@{/recipes/{id}(id=${nuts.id})}" target="_blank">Get Recipe</a>
             </div>
         </div>
     </div>
 </section>
 <!-- Meal list section end -->
-</body>
 
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
+</body>
 </html>

@@ -8,6 +8,37 @@
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
-<a th:href="@{/likedMeals}">Liked meals</a>
-<a th:href="@{/savedDailyDiets}">Your daily diets</a>
+<body>
+
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img3">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Daily Meal Plan Generator</h1>
+                <p>
+                    Generate your 3-meals daily plan!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section end -->
+
+<!-- User Page Section begin-->
+<section class="user-menu">
+    <div class="user-menu-box">
+        <a th:href="@{/likedMeals}">Liked meals</a>
+        <a th:href="@{/savedDailyDiets}">Your daily diets</a>
+    </div>
+</section>
+<!-- User page Section end-->
+
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
+</body>
 </html>

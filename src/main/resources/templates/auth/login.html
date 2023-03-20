@@ -9,10 +9,27 @@
 <!-- Header section - Menu toolbar -->
 
 <body>
-<div class="register-form">
-    <div th:if="${param.error} and ${session}" th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION']}">
-        <h2 th:text="${errorMsg.getMessage()}"></h2>
+
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img3">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Complex Search</h1>
+                <p>
+                    Find food that you will be inspired in!
+                </p>
+            </div>
+        </div>
     </div>
+</section>
+<!-- Hero Section end -->
+
+<!-- Login Section begin-->
+<div class="exception" th:if="${param.error} and ${session}" th:with="errorMsg=${session['SPRING_SECURITY_LAST_EXCEPTION']}">
+    <h2 th:text="${errorMsg.getMessage()}"></h2>
+</div>
+<div class="register-form">
     <form method="post" th:action="@{/login}">
         <div>
             <h3>Username: </h3>
@@ -25,6 +42,13 @@
         <button>Log in</button>
     </form>
 </div>
-</body>
+<!-- Login Section end-->
 
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
+</body>
 </html>

@@ -97,6 +97,15 @@ public class UserController {
         return new RedirectView("/savedDailyDiets");
     }
 
+    @PostMapping("/deleteDailyDiet/{id}")
+    public RedirectView deleteSavedDailyDiet(@PathVariable long id, Principal principal) {
+        User user = userService.findUserByUsername(principal.getName());
+
+        dailyDietService.deleteDailyMealPlan(id, user);
+
+        return new RedirectView("/savedDailyDiets");
+    }
+
     @ExceptionHandler({CreatedUserExistException.class, WrongEmailException.class,
             WrongPasswordException.class, ConstraintViolationException.class})
     public String handleRegistrationErrors(RuntimeException e, Model model) {

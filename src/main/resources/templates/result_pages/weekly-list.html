@@ -2,158 +2,179 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <!-- Stylesheets -->
-<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/style.css"/>
 
 <!-- Header section - Menu toolbar -->
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
 <body>
-    <!-- Hero Section begin -->
-    <section class="hero-img4">
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img4">
         <div class="hero-wrapper">
-            <h1>Weekly Meal Plan Generator</h1>
-            <p>
-                Generate your 3-meals per day weekly plan!
-            </p>
-        </div>
-    </section>
-    <!-- Hero Section end -->
-
-    <section class="meals">
-        <h2>Your daily diet:</h2>
-        <div class="weekly-bar"></div>
-        <h2>Monday</h2>
-        <div th:each="meals : ${dto.week.monday.meals}">
-            <div class="meals-list">
-                <h3 class="title" th:text="${meals.title}"></h3>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
+            <div class="hero-wrapper-text">
+                <h1>Weekly Meal Plan Generator</h1>
+                <p>
+                    Generate your 3-meals per day weekly plan!
+                </p>
             </div>
         </div>
-        <div class="weekly-nutritions">
+    </div>
+</section>
+<!-- Hero Section end -->
+
+<!-- Weekly List Section begin -->
+<section class="meals">
+    <h2>Your daily diet:</h2>
+    <div class="weekly-bar"></div>
+    <h2>Monday</h2>
+    <div th:each="meals : ${dto.week.monday.meals}">
+        <div class="meals-list">
+            <h3 th:text="${meals.title}" th:title="${meals.title}"></h3>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img
+                    th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
+        </div>
+    </div>
+    <div class="weekly-nutritions">
+        <div class="weekly-nutritions-values">
             <h3>Nutrition values of the day: </h3>
             <h4 th:text="'Calories: ' + ${dto.week.monday.nutrients.calories}"></h4>
             <h4 th:text="'Fat: ' + ${dto.week.monday.nutrients.fat}"></h4>
             <h4 th:text="'Carbohydrates: ' + ${dto.week.monday.nutrients.carbohydrates}"></h4>
             <h4 th:text="'Protein: ' + ${dto.week.monday.nutrients.protein}"></h4>
         </div>
-        <div class="weekly-bar">
-    </section>
+    </div>
+    <div class="weekly-bar"></div>
+</section>
 
-    <section class="meals">
-        <h2>Tuesday</h2>
-        <div th:each="meals : ${dto.week.tuesday.meals}">
-            <div class="meals-list">
-                <h3 class="title" th:text="${meals.title}"></h3>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
-            </div>
+<section class="meals">
+    <h2>Tuesday</h2>
+    <div th:each="meals : ${dto.week.tuesday.meals}">
+        <div class="meals-list">
+            <h3 th:text="${meals.title}" th:title="${meals.title}"></h3>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img
+                    th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
         </div>
-        <div class="weekly-nutritions">
-            <h3>Nutrition values of the day: </h3>
-            <h4 th:text="'Calories: ' + ${dto.week.tuesday.nutrients.calories}"></h4>
-            <h4 th:text="'Fat: ' + ${dto.week.tuesday.nutrients.fat}"></h4>
-            <h4 th:text="'Carbohydrates: ' + ${dto.week.tuesday.nutrients.carbohydrates}"></h4>
-            <h4 th:text="'Protein: ' + ${dto.week.tuesday.nutrients.protein}"></h4>
-        </div>
-        <div class="weekly-bar">
-    </section>
+    </div>
+    <div class="weekly-nutritions">
+        <h3>Nutrition values of the day: </h3>
+        <h4 th:text="'Calories: ' + ${dto.week.tuesday.nutrients.calories}"></h4>
+        <h4 th:text="'Fat: ' + ${dto.week.tuesday.nutrients.fat}"></h4>
+        <h4 th:text="'Carbohydrates: ' + ${dto.week.tuesday.nutrients.carbohydrates}"></h4>
+        <h4 th:text="'Protein: ' + ${dto.week.tuesday.nutrients.protein}"></h4>
+    </div>
+    <div class="weekly-bar"></div>
+</section>
 
-    <section class="meals">
-        <h2>Wednesday</h2>
-        <div th:each="meals : ${dto.week.wednesday.meals}">
-            <div class="meals-list">
-                <h3 class="title" th:text="${meals.title}"></h3>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
-            </div>
+<section class="meals">
+    <h2>Wednesday</h2>
+    <div th:each="meals : ${dto.week.wednesday.meals}">
+        <div class="meals-list">
+            <h3 th:text="${meals.title}" th:title="${meals.title}"></h3>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img
+                    th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
         </div>
-        <div class="weekly-nutritions">
-            <h3>Nutrition values of the day: </h3>
-            <h4 th:text="'Calories: ' + ${dto.week.wednesday.nutrients.calories}"></h4>
-            <h4 th:text="'Fat: ' + ${dto.week.wednesday.nutrients.fat}"></h4>
-            <h4 th:text="'Carbohydrates: ' + ${dto.week.wednesday.nutrients.carbohydrates}"></h4>
-            <h4 th:text="'Protein: ' + ${dto.week.wednesday.nutrients.protein}"></h4>
-        </div>
-        <div class="weekly-bar">
-    </section>
+    </div>
+    <div class="weekly-nutritions">
+        <h3>Nutrition values of the day: </h3>
+        <h4 th:text="'Calories: ' + ${dto.week.wednesday.nutrients.calories}"></h4>
+        <h4 th:text="'Fat: ' + ${dto.week.wednesday.nutrients.fat}"></h4>
+        <h4 th:text="'Carbohydrates: ' + ${dto.week.wednesday.nutrients.carbohydrates}"></h4>
+        <h4 th:text="'Protein: ' + ${dto.week.wednesday.nutrients.protein}"></h4>
+    </div>
+    <div class="weekly-bar"></div>
+</section>
 
-    <section class="meals">
-        <h2>Thursday</h2>
-        <div th:each="meals : ${dto.week.thursday.meals}">
-            <div class="meals-list">
-                <h3 class="title" th:text="${meals.title}"></h3>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
-            </div>
+<section class="meals">
+    <h2>Thursday</h2>
+    <div th:each="meals : ${dto.week.thursday.meals}">
+        <div class="meals-list">
+            <h3 th:text="${meals.title}" th:title="${meals.title}"></h3>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img
+                    th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
         </div>
-        <div class="weekly-nutritions">
-            <h3>Nutrition values of the day: </h3>
-            <h4 th:text="'Calories: ' + ${dto.week.thursday.nutrients.calories}"></h4>
-            <h4 th:text="'Fat: ' + ${dto.week.thursday.nutrients.fat}"></h4>
-            <h4 th:text="'Carbohydrates: ' + ${dto.week.thursday.nutrients.carbohydrates}"></h4>
-            <h4 th:text="'Protein: ' + ${dto.week.thursday.nutrients.protein}"></h4>
-        </div>
-        <div class="weekly-bar">
-    </section>
+    </div>
+    <div class="weekly-nutritions">
+        <h3>Nutrition values of the day: </h3>
+        <h4 th:text="'Calories: ' + ${dto.week.thursday.nutrients.calories}"></h4>
+        <h4 th:text="'Fat: ' + ${dto.week.thursday.nutrients.fat}"></h4>
+        <h4 th:text="'Carbohydrates: ' + ${dto.week.thursday.nutrients.carbohydrates}"></h4>
+        <h4 th:text="'Protein: ' + ${dto.week.thursday.nutrients.protein}"></h4>
+    </div>
+    <div class="weekly-bar"></div>
+</section>
 
-    <section class="meals">
-        <h2>Friday</h2>
-        <div th:each="meals : ${dto.week.friday.meals}">
-            <div class="meals-list">
-                <h3 class="title" th:text="${meals.title}"></h3>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
-            </div>
+<section class="meals">
+    <h2>Friday</h2>
+    <div th:each="meals : ${dto.week.friday.meals}">
+        <div class="meals-list">
+            <h3 th:text="${meals.title}" th:title="${meals.title}"></h3>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img
+                    th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a> <a
+                th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
         </div>
-        <div class="weekly-nutritions">
-            <h3>Nutrition values of the day: </h3>
-            <h4 th:text="'Calories: ' + ${dto.week.friday.nutrients.calories}"></h4>
-            <h4 th:text="'Fat: ' + ${dto.week.friday.nutrients.fat}"></h4>
-            <h4 th:text="'Carbohydrates: ' + ${dto.week.friday.nutrients.carbohydrates}"></h4>
-            <h4 th:text="'Protein: ' + ${dto.week.friday.nutrients.protein}"></h4>
-        </div>
-        <div class="weekly-bar">
-    </section>
+    </div>
+    <div class="weekly-nutritions">
+        <h3>Nutrition values of the day: </h3>
+        <h4 th:text="'Calories: ' + ${dto.week.friday.nutrients.calories}"></h4>
+        <h4 th:text="'Fat: ' + ${dto.week.friday.nutrients.fat}"></h4>
+        <h4 th:text="'Carbohydrates: ' + ${dto.week.friday.nutrients.carbohydrates}"></h4>
+        <h4 th:text="'Protein: ' + ${dto.week.friday.nutrients.protein}"></h4>
+    </div>
+    <div class="weekly-bar"></div>
+</section>
 
-    <section class="meals">
-        <h2>Saturday</h2>
-        <div th:each="meals : ${dto.week.saturday.meals}">
-            <div class="meals-list">
-                <h3 class="title" th:text="${meals.title}"></h3>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
-            </div>
+<section class="meals">
+    <h2>Saturday</h2>
+    <div th:each="meals : ${dto.week.saturday.meals}">
+        <div class="meals-list">
+            <h3 th:text="${meals.title}" th:title="${meals.title}"></h3>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img
+                    th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
         </div>
-        <div class="weekly-nutritions">
-            <h3>Nutrition values of the day: </h3>
-            <h4 th:text="'Calories: ' + ${dto.week.saturday.nutrients.calories}"></h4>
-            <h4 th:text="'Fat: ' + ${dto.week.saturday.nutrients.fat}"></h4>
-            <h4 th:text="'Carbohydrates: ' + ${dto.week.saturday.nutrients.carbohydrates}"></h4>
-            <h4 th:text="'Protein: ' + ${dto.week.saturday.nutrients.protein}"></h4>
-        </div>
-        <div class="weekly-bar">
-    </section>
+    </div>
+    <div class="weekly-nutritions">
+        <h3>Nutrition values of the day: </h3>
+        <h4 th:text="'Calories: ' + ${dto.week.saturday.nutrients.calories}"></h4>
+        <h4 th:text="'Fat: ' + ${dto.week.saturday.nutrients.fat}"></h4>
+        <h4 th:text="'Carbohydrates: ' + ${dto.week.saturday.nutrients.carbohydrates}"></h4>
+        <h4 th:text="'Protein: ' + ${dto.week.saturday.nutrients.protein}"></h4>
+    </div>
+    <div class="weekly-bar"></div>
+</section>
 
-    <section class="meals">
-        <h2>Sunday</h2>
-        <div th:each="meals : ${dto.week.sunday.meals}">
-            <div class="meals-list">
-                <h3 class="title" th:text="${meals.title}"></h3>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
-                <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
-            </div>
+<section class="meals">
+    <h2>Sunday</h2>
+    <div th:each="meals : ${dto.week.sunday.meals}">
+        <div class="meals-list">
+            <h3 th:text="${meals.title}" th:title="${meals.title}"></h3>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank"><img
+                    th:src="'https://spoonacular.com/recipeImages/' + ${meals.id} + '-312x231.jpg'"></a>
+            <a th:href="@{/recipes/{id}(id=${meals.id})}" target="_blank">Get Recipe</a>
         </div>
-        <div class="weekly-nutritions">
-            <h3>Nutrition values of the day: </h3>
-            <h4 th:text="'Calories: ' + ${dto.week.sunday.nutrients.calories}"></h4>
-            <h4 th:text="'Fat: ' + ${dto.week.sunday.nutrients.fat}"></h4>
-            <h4 th:text="'Carbohydrates: ' + ${dto.week.sunday.nutrients.carbohydrates}"></h4>
-            <h4 th:text="'Protein: ' + ${dto.week.sunday.nutrients.protein}"></h4>
-        </div>
-        <div class="weekly-bar">
-    </section>
+    </div>
+    <div class="weekly-nutritions">
+        <h3>Nutrition values of the day: </h3>
+        <h4 th:text="'Calories: ' + ${dto.week.sunday.nutrients.calories}"></h4>
+        <h4 th:text="'Fat: ' + ${dto.week.sunday.nutrients.fat}"></h4>
+        <h4 th:text="'Carbohydrates: ' + ${dto.week.sunday.nutrients.carbohydrates}"></h4>
+        <h4 th:text="'Protein: ' + ${dto.week.sunday.nutrients.protein}"></h4>
+    </div>
+    <div class="weekly-bar"></div>
+</section>
+<!-- Weekly List Section begin -->
+
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
 
 </body>
-
 </html>

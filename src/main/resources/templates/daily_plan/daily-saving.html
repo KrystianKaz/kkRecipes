@@ -8,10 +8,21 @@
 <div th:insert="~{dynamic/navigationMain.html}"></div>
 <!-- Header section - Menu toolbar -->
 
+<body>
 
-    <form method="post" th:action="@{/saveDailyMealPlan}">
-        <h3>Your description: </h3><input type="text" name="description">
-        <h3>Day: </h3><input type="date" name="date">
-        <button>Save!</button>
-    </form>
+<!-- Daily Diet Saving Section begin -->
+<form method="post" th:action="@{/saveDailyMealPlan}">
+    <h3>Your description: </h3><input type="text" name="description">
+    <h3>Day: </h3><input type="date" name="date">
+    <button>Save!</button>
+</form>
+<!-- Daily Diet Saving Section end -->
+
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
+</body>
 </html>

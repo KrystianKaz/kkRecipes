@@ -10,15 +10,21 @@
 
 <body>
 <!-- Hero Section begin -->
-<section class="hero-img">
-    <div class="hero-wrapper">
-        <h1>Complex Search</h1>
-        <p>
-            Find food that you will be inspired in!
-        </p>
+<section class="hero">
+    <div class="hero-img">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Complex Search</h1>
+                <p>
+                    Find food that you will be inspired in!
+                </p>
+            </div>
+        </div>
     </div>
 </section>
 <!-- Hero Section end -->
+
+<!-- Meals Section begin -->
 <section class="meals">
     <div class="meal-details">
         <div class="meal-like" th:if="${#authorization.expression('isAuthenticated()')}">
@@ -40,8 +46,12 @@
                 </div>
             </div>
         </div>
-        <h2 th:text="${mealById.title}"></h2>
-        <img th:src="${mealById.image}">
+        <div class="meal-title">
+            <h2 th:text="${mealById.title}"></h2>
+        </div>
+        <div class="meal-image">
+            <img th:src="${mealById.image}">
+        </div>
         <div class="badges">
             <div class="badges-row" th:if="${mealById.isVegetarian}">
                 <img src="/img/badges/vegetarian.svg">
@@ -93,6 +103,13 @@
         </div>
     </div>
 </section>
-</body>
+<!-- Meals Section end -->
 
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
+</body>
 </html>
