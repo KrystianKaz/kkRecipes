@@ -16,4 +16,7 @@ public class UriUtils {
         return API_RECIPE_URL + id + "/analyzedInstructions";
     }
 
+    public static String convertAllUnitsToGrams() {
+        return API_RECIPE_URL + "/convert";
+    }
 }

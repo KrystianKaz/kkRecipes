@@ -653,4 +653,9 @@ select {
 .user-menu a {
     display: block;
     margin-bottom: 1rem;
+    transition: all 0.3s ease 0s;
+}
+
+.user-menu a:hover {
+    color: #ff9900;
 }

@@ -85,9 +85,11 @@
             <h3>Ingredients:</h3>
             <div th:each="extIngr : ${mealById.extendedIngredients}">
                 <div class="meal-ingredients-list">
-                    <h5 th:text="${extIngr.measures.us.amount} + ' ' + ${extIngr.measures.us.unitShort}"></h5>
-                    <img th:src="'https://spoonacular.com/cdn/ingredients_100x100/' + ${extIngr.image}">
-                    <h5 th:text="${extIngr.nameClean}"></h5>
+                    <div th:each="conv : ${converter.convertUnitsToGrams(extIngr.measures.us.amount, extIngr.measures.us.unitShort, extIngr.nameClean)}">
+                        <h5 th:text="${conv.targetAmount} + ' ' + ${conv.targetUnit}"></h5>
+                        <img th:src="'https://spoonacular.com/cdn/ingredients_100x100/' + ${extIngr.image}">
+                        <h5 th:text="${extIngr.nameClean}"></h5>
+                    </div>
                 </div>
             </div>
         </div>

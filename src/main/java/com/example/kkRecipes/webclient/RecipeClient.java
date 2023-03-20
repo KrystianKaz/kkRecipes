@@ -8,11 +8,18 @@ import com.example.kkRecipes.model.dto.meal_plan.MealPlanSearchValuesDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanWeekDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
+import com.example.kkRecipes.model.dto.recipe.AmountUnitDTO;
+import com.example.kkRecipes.model.dto.recipe.ExtendedIngredientsDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
+import com.example.kkRecipes.model.dto.units.ConvertedUnitsDTO;
 import com.example.kkRecipes.utils.UriUtils;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,7 +31,7 @@ public class RecipeClient {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-//    private final String API_KEY = "bad4e6f148a34319bfa9e6276114611c";
+    //    private final String API_KEY = "bad4e6f148a34319bfa9e6276114611c";
     private final String API_KEY = "3ae151c6bcb94922b73d44be38dc2bbf";
 
     public RecipeDTO recipeById(int id) {
@@ -90,6 +97,15 @@ public class RecipeClient {
                 mealPlanSearchValuesDTO.getTargetCalories(),
                 mealPlanSearchValuesDTO.getDiet(),
                 mealPlanSearchValuesDTO.getExclude());
+    }
+
+    public ConvertedUnitsDTO convertedUnitsForRecipe(double amount, String unitShort, String nameClean) {
+        return restTemplate.getForObject(UriUtils.convertAllUnitsToGrams() + getApiKey() +
+                "&sourceAmount={amount}&sourceUnit={unitShort}&ingredientName={nameClean}&targetUnit=grams",
+                ConvertedUnitsDTO.class,
+                amount,
+                unitShort,
+                nameClean);
     }
 
     private String getApiKey() {

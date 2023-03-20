@@ -12,6 +12,7 @@ import com.example.kkRecipes.model.dto.meal_plan.MealPlanWeekDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
+import com.example.kkRecipes.model.dto.units.ConvertedUnitsDTO;
 import com.example.kkRecipes.service.DailyDietService;
 import com.example.kkRecipes.service.MealService;
 import com.example.kkRecipes.service.RecipeService;
@@ -44,6 +45,8 @@ public class RecipeController {
 
         List<PreparationInstructionsDTO> preparationInstructionsDTOS = recipeService.preparationInstructionsByRecipeId(id);
         model.addAttribute("preps", preparationInstructionsDTOS);
+
+        model.addAttribute("converter", recipeService);
 
         if (principal != null) {
             User user = userService.findUserByUsername(principal.getName());
