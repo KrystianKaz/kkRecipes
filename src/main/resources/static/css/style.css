@@ -111,14 +111,14 @@ button:hover {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    position: relative;
+    position: initial;
 }
 
-.hero h1{
+.hero h1 {
     font-size: 2.5vh;
 }
 
-.hero p{
+.hero p {
     font-size: 1.5vh
 }
 
@@ -195,7 +195,7 @@ button:hover {
     font-size: medium;
 }
 
-.meal-image img{
+.meal-image img {
     max-width: -webkit-fill-available;
 }
 
@@ -369,16 +369,16 @@ button:hover {
     margin: auto;
 }
 
-.search h3{
+.search h3 {
     font-size: large;
 }
 
 .search-form {
     margin: auto;
-} 
+}
 
 .search-complex {
-    position: relative;
+    position: initial;
     display: grid;
     text-align: center;
     justify-content: center;
@@ -467,7 +467,7 @@ select {
 }
 
 .register-form {
-    position: relative;
+    position: initial;
     display: table;
     text-align: center;
     margin-right: auto;
@@ -658,4 +658,115 @@ select {
 
 .user-menu a:hover {
     color: #ff9900;
+}
+
+.navbar {
+    height: 70px;
+    width: 100%;
+    padding: 14px 30px;
+    background-color: #24252a;
+    position: relative;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.navbar .nav-header {
+    display: inline;
+}
+
+.navbar .nav-header .nav-logo {
+    display: inline-block;
+    margin-top: -7px;
+}
+
+.navbar .nav-links {
+    display: -webkit-box;
+    float: right;
+    font-size: 18px;
+    margin: auto 0;
+}
+
+.navbar .nav-links .loginBtn {
+    display: inline-block;
+    padding: 5px 15px;
+    margin-left: 20px;
+    font-size: 17px;
+    color: rgb(18, 18, 18);
+}
+
+.navbar .nav-links a {
+    padding: 10px 12px;
+    text-decoration: none;
+    font-weight: 550;
+    color: white;
+    transition: all 0.3s ease 0s;
+}
+
+.navbar .nav-links a:hover {
+    color: #ff9900;
+}
+
+.navbar #nav-check,
+.navbar .nav-btn {
+    display: none;
+}
+
+@media (max-width:1050px) {
+    .navbar .nav-btn {
+        display: inline-block;
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
+
+    .navbar .nav-btn label {
+        display: inline-block;
+        width: 80px;
+        height: 70px;
+        padding: 25px;
+    }
+
+    .navbar .nav-btn label span {
+        display: block;
+        height: 10px;
+        width: 25px;
+        border-top: 3px solid #eee;
+    }
+
+    .navbar .nav-btn label:hover,
+    .navbar #nav-check:checked~.nav-btn label {
+        background-color: rgb(18, 18, 18);
+    }
+
+    .navbar .nav-links {
+        position: absolute;
+        display: block;
+        text-align: center;
+        width: 50%;
+        background-color: rgb(18, 18, 18);
+        transition: all 0.3s ease-in;
+        overflow-y: hidden;
+        top: 70px;
+        right: 0px;
+    }
+
+    .navbar .nav-links a {
+        display: block;
+    }
+
+    .navbar #nav-check:not(:checked)~.nav-links {
+        height: 0px;
+    }
+
+    .navbar #nav-check:checked~.nav-links {
+        overflow-y: auto;
+    }
+
+    .navbar .nav-links .loginBtn {
+        padding: 10px 40px;
+        margin: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        color: rgb(18, 18, 18);
+    }
 }

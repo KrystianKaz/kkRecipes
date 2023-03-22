@@ -1,40 +1,58 @@
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
     <title>kkRecipes</title>
-    <meta name="Generate Your Meal Plan And Find Food Inspiration!" content="">
+    <meta name="Generate Your Meal Plan And Find Food Inspiration!">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-<header>
-    <a th:href="@{/}"><img class="logo" src="/img/logo.png" alt="kkRecipes Logo"></a>
-    <nav>
-        <ul class="navigation_links">
-            <li><a th:href="@{/search}">Complex Search</a></li>
-            <li><a th:href="@{/findByNutrients}">Search By Nutrition</a></li>
-            <li><a th:href="@{/generateDailyMealPlan}">Genereate Daily Meal Plan</a></li>
-            <li><a th:href="@{/generateWeeklyMealPlan}">Generate Weekly Meal Plan</a></li>
-        </ul>
-    </nav>
-    <div th:if="${#authorization.expression('isAuthenticated()')}">
-        <a href="/user">
-            <button>User panel</button>
-        </a>
-        <a href="/logout">
-            <button>Logout</button>
-        </a>
+<div class="navbar">
+
+    <!-- Navbar logo -->
+    <div class="nav-header">
+        <div class="nav-logo">
+            <a th:href="@{/}"><img class="logo" src="/img/logo.png" alt="kkRecipes Logo"></a>
+        </div>
     </div>
-    <div th:unless="${#authorization.expression('isAuthenticated()')}">
-        <a href="/login">
-            <button>Login</button>
-        </a>
-        <a href="/register">
-            <button>Register</button>
-        </a>
+
+    <!-- responsive navbar toggle button -->
+    <input type="checkbox" id="nav-check">
+    <div class="nav-btn">
+        <label for="nav-check">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
     </div>
-</header>
+
+    <!-- Navbar items -->
+    <div class="nav-links">
+        <a th:href="@{/search}">Complex Search</a>
+        <a th:href="@{/findByNutrients}">Search By Nutrition</a>
+        <a th:href="@{/generateDailyMealPlan}">Generate Daily Meal Plan</a>
+        <a th:href="@{/generateWeeklyMealPlan}">Generate Weekly Meal Plan</a>
+
+        <div class="a" th:if="${#authorization.expression('isAuthenticated()')}">
+            <a th:href="@{/user}">
+                User panel
+            </a>
+            <a th:href="@{/logout}">
+                Logout
+            </a>
+        </div>
+        <div class="a" th:unless="${#authorization.expression('isAuthenticated()')}">
+            <a th:href="@{/login}">
+                Login
+            </a>
+            <a th:href="@{/register}">
+                Register
+            </a>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>

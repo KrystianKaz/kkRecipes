@@ -10,12 +10,26 @@
 
 <body>
 
+<section class="hero">
+    <div class="hero-img3">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Saving your daily meal plan</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Daily Diet Saving Section begin -->
-<form method="post" th:action="@{/saveDailyMealPlan}">
-    <h3>Your description: </h3><input type="text" name="description">
-    <h3>Day: </h3><input type="date" name="date">
-    <button>Save!</button>
-</form>
+<section class="search">
+    <div class="search-complex">
+        <form method="post" th:action="@{/saveDailyMealPlan}">
+            <h3>Your description: </h3><input type="text" name="description">
+            <h3>Day: </h3><input type="date" name="date" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}">
+            <button>Save!</button>
+        </form>
+    </div>
+</section>
 <!-- Daily Diet Saving Section end -->
 
 <!-- Footer section begin -->
