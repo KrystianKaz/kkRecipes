@@ -4,6 +4,9 @@ spring:
     username: KrystianKaz
     password: kkrecipes
     driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    enabled: true
+    schemas: kkrecipes
   jpa:
     show-sql: true
     hibernate:
@@ -11,3 +14,26 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+  config:
+    import: optional:file:.env[.properties]
+kkrecipes:
+  apiKeyValue: ${API_KEY}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+  flyway:
+    enabled: true
+    schemas: ${DB_FLYWAY_SCHEMA}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+kkrecipes:
+  apiKeyValue: ${API_KEY_VALUE}

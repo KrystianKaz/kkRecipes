@@ -128,6 +128,8 @@ button:hover {
     background-size: cover;
     width: 100%;
     height: 100%;
+    z-index: -2;
+    position: relative;
 }
 
 .hero-img2 {
@@ -136,6 +138,8 @@ button:hover {
     background-size: cover;
     width: 100%;
     height: 100%;
+    z-index: -2;
+    position: relative;
 }
 
 .hero-img3 {
@@ -144,6 +148,8 @@ button:hover {
     background-size: cover;
     width: 100%;
     height: 100%;
+    z-index: -2;
+    position: relative;
 }
 
 .hero-img4 {
@@ -152,6 +158,8 @@ button:hover {
     background-size: cover;
     width: 100%;
     height: 100%;
+    z-index: -2;
+    position: relative;
 }
 
 .hero-wrapper {
@@ -165,8 +173,14 @@ button:hover {
 .hero-wrapper-text {
     width: 90%;
     margin: 0 auto;
-    padding: 5vw 0;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: bold;
+    display: table-footer-group;
+    top: 5vh;
+    left: 3vh;
+    position: relative;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .meals {
@@ -366,7 +380,7 @@ button:hover {
 
 .search {
     width: 80%;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .search h3 {
@@ -390,6 +404,15 @@ button:hover {
     border-color: rgb(0, 0, 0, 0.5);
     background-color: rgb(255, 255, 255, 0.1);
     box-shadow: rgb(245, 102, 0) 20px 20px 30px -15px;
+}
+
+.search-complex p {
+    font-family: "Montserrat", sans-serif;
+    line-height: 2.5vh;
+    color: white;
+    text-align: justify;
+    display: grid;
+    margin-top: 2vh;
 }
 
 .search-complex h3 {

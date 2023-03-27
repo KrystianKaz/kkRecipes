@@ -57,6 +57,6 @@ public class RecipeService {
         String replacedAmount = amount.replace(",", ".");
         double amountSeparatedWithDot = Double.parseDouble(replacedAmount);
 
-        return  recipeClient.convertedUnitsForRecipe(amountSeparatedWithDot, unit, name);
+        return recipeClient.convertedUnitsForRecipe(amountSeparatedWithDot, unit, name);
     }
 }

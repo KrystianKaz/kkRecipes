@@ -146,6 +146,37 @@ class DailyDietServiceTest {
         assertThat(exception.getMessage(), is(new IllegalOperationException().getMessage()));
     }
 
+    @Test
+    void should_be_able_to_delete_meal_plan_from_saved_by_user() {
+        // given
+        User user = getUser();
+        DailyDiet dailyDiet = getDailyDiet(1, 1L, true);
+
+        given(dailyDietRepository.findById(dailyDiet.getId())).willReturn(Optional.of(dailyDiet));
+
+        // when
+        dailyDietService.deleteDailyMealPlan(dailyDiet.getId(), user);
+
+        // then
+        then(dailyDietRepository).should().delete(dailyDiet);
+    }
+
+    @Test
+    void should_throw_exception_when_trying_to_delete_other_user_daily_plan() {
+        // given
+        User user = getUser();
+        DailyDiet dailyDiet = getDailyDiet(1, 2L, false);
+
+        given(dailyDietRepository.findById(dailyDiet.getId())).willReturn(Optional.of(dailyDiet));
+
+        // when
+        IllegalOperationException exception = assertThrows(IllegalOperationException.class,
+                () -> dailyDietService.deleteDailyMealPlan(dailyDiet.getId(), user));
+
+        // then
+        assertThat(exception.getMessage(), is(new IllegalOperationException().getMessage()));
+    }
+
 
     private static User getUser() {
         User user = new User();

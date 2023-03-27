@@ -9,12 +9,14 @@ import com.example.kkRecipes.model.dto.meal_plan.*;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchResultsDTO;
 import com.example.kkRecipes.model.dto.nutrients_search.NutrientsSearchValuesDTO;
 import com.example.kkRecipes.model.dto.recipe.RecipeDTO;
+import com.example.kkRecipes.model.dto.units.ConvertedUnitsDTO;
 import com.example.kkRecipes.webclient.RecipeClient;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.stubbing.OngoingStubbing;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,6 +26,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class RecipeServiceTest {
@@ -166,6 +169,29 @@ class RecipeServiceTest {
                 is(plan.getWeek().getThursday().getMeals().get(0)));
         assertThat(mealPlanWeekDTO.getWeek().getSunday().getMeals().get(2).getTitle(),
                 is("Low Fat Potato Baked Oven Chips"));
+    }
+
+    @Test
+    void should_be_able_to_convert_units_to_grams() {
+        // given
+        String amount = "0,5";
+        String unit = "cups";
+        String name = "seasoning";
+
+        double targetAmount = 118.29;
+        String targetUnit = "grams";
+
+        ConvertedUnitsDTO convertedUnits = new ConvertedUnitsDTO();
+        convertedUnits.setTargetAmount(targetAmount);
+        convertedUnits.setTargetUnit(targetUnit);
+
+        // when
+        when(recipeService.convertUnitsToGrams(amount, unit, name)).thenReturn(convertedUnits);
+        ConvertedUnitsDTO convertedUnitsDTO = recipeService.convertUnitsToGrams(amount, unit, name);
+
+        // then
+        assertThat(convertedUnitsDTO.getTargetAmount(), is(targetAmount));
+        assertThat(convertedUnitsDTO.getTargetUnit(), is(targetUnit));
     }
 
     private ComplexSearchDTO getRecipesByGivingMealDetails() {
