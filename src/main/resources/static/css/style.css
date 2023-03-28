@@ -253,14 +253,14 @@ button:hover {
     width: 33%;
     text-align: center;
     margin-top: 10px;
-    height: 15vh;
+    height: 16vh;
 }
 
 .meal-ingredients-list h5 {
     font-family: "Montserrat", sans-serif;
-    font-size: 1vw;
     color: aliceblue;
-    font-size: 1.1vh;
+    font-size: 1.5vh;
+    font-weight: 100;
 }
 
 .meal-ingredients-list img {
@@ -588,7 +588,7 @@ select {
     cursor: pointer;
     font-weight: bold;
     background-color: rgb(184, 99, 38);
-    font-size: 1.5vw;
+    font-size: 2vh;
     width: 30vw;
     transition: all 0.3s ease 0.0s;
 }
@@ -801,8 +801,12 @@ select {
         color: rgb(18, 18, 18);
     }
 
+    .meals {
+        width: 99%;
+    }
+
     .meals-list {
-        width: 49%;
+        margin: 1.5% 0.5%;
     }
 
     .meals-list h3 {
