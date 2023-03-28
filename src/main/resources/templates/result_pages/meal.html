@@ -99,7 +99,8 @@
             <div th:each="steps : ${preps}">
                 <div th:each="inst : ${steps.steps}">
                     <div class="meal-instructions-list">
-                        <h4 th:text="${inst.number} + '. ' + ${inst.step}"></h4><br>
+                        <div class="meal-instructions-step" th:text="${inst.number} + '. '"></div>
+                        <h4 th:text="${inst.step}"></h4>
                     </div>
                 </div>
             </div>

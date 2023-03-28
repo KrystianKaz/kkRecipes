@@ -180,7 +180,6 @@ button:hover {
     left: 3vh;
     position: relative;
     z-index: -1;
-    background-color: rgba(0, 0, 0, 0.6);
 }
 
 .meals {
@@ -222,6 +221,7 @@ button:hover {
     text-align: justify;
     text-justify: inter-word;
     margin-bottom: 20px;
+    line-height: 3vh;
 }
 
 .meal-details img {
@@ -282,6 +282,7 @@ button:hover {
     width: 100%;
     float: left;
     margin-top: 10px;
+    line-height: 3vh;
 }
 
 .meal-instructions h4 {
@@ -290,6 +291,13 @@ button:hover {
     color: aliceblue;
     font-weight: normal;
     text-align: justify;
+}
+
+.meal-instructions-step {
+    font-family: "Montserrat", sans-serif;
+    font-size: medium;
+    color: #ff9900;
+    font-weight: normal;
 }
 
 .meals h2 {
@@ -791,5 +799,36 @@ select {
         font-size: 18px;
         font-weight: bold;
         color: rgb(18, 18, 18);
+    }
+
+    .meals-list {
+        width: 49%;
+    }
+
+    .meals-list h3 {
+        font-size: 2vw;
+    }
+
+    .meals-list a {
+        font-size: 2vw;
+    }
+
+    .meals-nutrition h4 {
+        font-size: 2vw;
+    }
+
+    .search-complex {
+        width: 100%;
+    }
+
+    .search-complex label,
+    input,
+    select {
+        font-size: 3vw;
+    }
+
+    .hero-wrapper-text {
+        background-color: rgba(0, 0, 0, 0.6);
+        left: 1vh;
     }
 }
