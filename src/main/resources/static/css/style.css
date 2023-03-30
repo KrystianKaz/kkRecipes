@@ -87,6 +87,13 @@ button:hover {
     font-size: small;
 }
 
+.photo img{
+    width: 30vh;
+    border-radius: 50%;
+    border-style: solid;
+    border-color: #ff9900;
+}
+
 .button-revert:hover {
     background-color: rgb(73, 73, 73);
 }
