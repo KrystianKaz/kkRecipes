@@ -195,6 +195,17 @@ button:hover {
     margin-right: auto;
 }
 
+.error img{
+    height: 25vh;
+    margin-top: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5vh;
+    border-style: solid;
+    border-radius: 5vh;
+    border-color: #ff9900;
+}
+
 .meal-details {
     font-family: "Montserrat", sans-serif;
     font-size: medium;

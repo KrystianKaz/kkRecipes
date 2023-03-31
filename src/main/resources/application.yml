@@ -16,6 +16,11 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
   config:
     import: optional:file:.env[.properties]
+server:
+  error:
+    whitelabel:
+      enabled: false
+
 kkrecipes:
   apiKeyValue: ${API_KEY}
 
@@ -34,6 +39,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: validate
+server:
+  error:
+    whitelabel:
+      enabled: false
 
 kkrecipes:
   apiKeyValue: ${API_KEY_VALUE}

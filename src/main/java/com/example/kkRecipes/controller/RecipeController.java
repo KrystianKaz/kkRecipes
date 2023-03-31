@@ -20,9 +20,12 @@ import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -148,4 +151,27 @@ public class RecipeController {
         return new RedirectView("/recipes/{id}");
     }
 
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public String handleServerError(MethodArgumentTypeMismatchException e) {
+        return "/errors/500";
+    }
+
+    @ExceptionHandler(HttpClientErrorException.NotFound.class)
+    public String handleClientError(HttpClientErrorException.NotFound e, Model model) {
+        model.addAttribute("statusCode", e.getStatusCode());
+        model.addAttribute("message", extractErrorMessage(e.getMessage()));
+        return "/errors/client";
+    }
+
+    private String extractErrorMessage(String errorMessage) {
+        String prefix = "message\":\"";
+        String suffix = "\"}";
+        int startIndex = errorMessage.indexOf(prefix);
+        int endIndex = errorMessage.indexOf(suffix, startIndex + prefix.length());
+        if (startIndex != -1 && endIndex != -1) {
+            return errorMessage.substring(startIndex + prefix.length(), endIndex);
+        } else {
+            return errorMessage;
+        }
+    }
 }
