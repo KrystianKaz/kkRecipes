@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="/css/style.css"/>
+
+<!-- icon -->
+<link rel="icon" type="image/png" href="/img/logo.png"/>
+
+<!-- Header section - Menu toolbar -->
+<div th:insert="~{dynamic/navigationMain.html}"></div>
+<!-- Header section - Menu toolbar -->
+
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img3">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Oops...</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section end -->
+
+<!-- Error section begin -->
+<section class="search">
+    <div class="search-complex">
+        <h3>404 METHOD_NOT_ALLOWED</h3>
+        <div class="error">
+            <img src="/img/errors/403.png">
+        </div>
+        <p>The requested method is not allowed.</p>
+    </div>
+</section>
+<!-- Error section end -->
+
+
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
+</html>
