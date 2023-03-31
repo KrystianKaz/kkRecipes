@@ -151,11 +151,6 @@ public class RecipeController {
         return new RedirectView("/recipes/{id}");
     }
 
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public String handleServerError(MethodArgumentTypeMismatchException e) {
-        return "/errors/500";
-    }
-
     @ExceptionHandler(HttpClientErrorException.NotFound.class)
     public String handleClientError(HttpClientErrorException.NotFound e, Model model) {
         model.addAttribute("statusCode", e.getStatusCode());
