@@ -106,6 +106,10 @@ public class RecipeClient {
                 nameClean);
     }
 
+    public String recipeNutritionLabel(int id) {
+        return  restTemplate.getForObject(getRecipeNutritionLabel(id) + getApiKey(), String.class);
+    }
+
     private String getApiKey() {
         return "?apiKey=" + API_KEY;
     }

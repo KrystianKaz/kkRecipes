@@ -59,4 +59,8 @@ public class RecipeService {
 
         return recipeClient.convertedUnitsForRecipe(amountSeparatedWithDot, unit, name);
     }
+
+    public String recipeNutritionLabel(int id) {
+        return recipeClient.recipeNutritionLabel(id);
+    }
 }

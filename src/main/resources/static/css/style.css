@@ -299,7 +299,7 @@ button:hover {
 .meal-instructions-list {
     width: 100%;
     float: left;
-    margin-top: 10px;
+    margin-top: 2vh;
     line-height: 3vh;
 }
 
@@ -316,6 +316,7 @@ button:hover {
     font-size: medium;
     color: #ff9900;
     font-weight: normal;
+    text-align: left;
 }
 
 .meals h2 {
@@ -700,7 +701,6 @@ select {
 }
 
 .user-menu-box h3 {
-    margin-top: 1vw;
     margin-bottom: 1vw;
 }
 
@@ -836,7 +836,17 @@ select {
     display: none;
 }
 
+.meal-nutrition-label {
+    margin-top: 1vh;
+    margin-bottom: 2vh;
+}
+
 @media (max-width:1050px) {
+    .badges {
+        justify-content: space-between;
+        width: 100%;
+    }
+
     .navbar .nav-btn {
         display: inline-block;
         position: absolute;
@@ -895,6 +905,10 @@ select {
         color: rgb(18, 18, 18);
     }
 
+    .meal-instructions-step {
+        text-align: center;
+    }
+
     .meals {
         width: 99%;
     }
@@ -939,7 +953,6 @@ select {
     }
 
     .user-menu-box h3 {
-        font-size: medium;
         margin-bottom: 2vh;
         margin-top: 2vh;
     }

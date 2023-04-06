@@ -19,4 +19,8 @@ public class UriUtils {
     public static String convertAllUnitsToGrams() {
         return API_RECIPE_URL + "/convert";
     }
+
+    public static String getRecipeNutritionLabel(int id) {
+        return API_RECIPE_URL + id + "/nutritionLabel";
+    }
 }
