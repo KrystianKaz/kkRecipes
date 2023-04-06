@@ -1,10 +1,8 @@
 package com.example.kkRecipes.service;
 
-import com.example.kkRecipes.exception.custom.CreatedUserExistException;
-import com.example.kkRecipes.exception.custom.UserNotExistException;
-import com.example.kkRecipes.exception.custom.WrongEmailException;
-import com.example.kkRecipes.exception.custom.WrongPasswordException;
+import com.example.kkRecipes.exception.custom.*;
 import com.example.kkRecipes.model.User;
+import com.example.kkRecipes.model.enums.UserRolesEnum;
 import com.example.kkRecipes.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
@@ -29,6 +28,24 @@ class UserServiceTest {
     private UserService userService;
     @Mock
     private UserRepository userRepository;
+
+
+    @Test
+    void should_find_all_registered_users() {
+        // given
+        User user1 = getUser();
+        User user2 = new User("C3PO", "password", "c3po@page.com", true);
+        List<User> givenUsers = List.of(user1, user2);
+
+        given(userRepository.findAll()).willReturn(givenUsers);
+
+        // when
+        List<User> registeredUsers = userService.findAllUsers();
+
+        // then
+        assertThat(registeredUsers.size(), is(2));
+        assertThat(givenUsers, is(registeredUsers));
+    }
 
     @Test
     void should_be_able_to_return_registered_user() {
@@ -44,6 +61,43 @@ class UserServiceTest {
         // then
         assertThat(givenUser, is(user));
         assertThat(givenUser.getUsername(), is("FirstUser"));
+    }
+
+    @Test
+    void should_throw_exception_when_changing_status_of_user_with_administrator_role() {
+        // given
+        User givenUser = getUser();
+        givenUser.setUserRoles(UserRolesEnum.ADMIN);
+
+        given(userRepository.findById(givenUser.getId())).willReturn(Optional.of(givenUser));
+
+        // when
+        IllegalOperationException exception = assertThrows(IllegalOperationException.class,
+                () -> userService.activateOrDeactivateUserById(givenUser.getId()));
+
+        // then
+        assertThat(exception.getMessage(), is(new IllegalOperationException().getMessage()));
+    }
+
+    @Test
+    void should_change_status_of_given_user() {
+        // given
+        User user1 = getUser(); // active:true
+        user1.setId(1L);
+        User user2 = getUser();
+        user2.setId(2L);
+        user2.setActive(false);
+
+        given(userRepository.findById(user1.getId())).willReturn(Optional.of(user1));
+        given(userRepository.findById(user2.getId())).willReturn(Optional.of(user2));
+
+        // when
+        userService.activateOrDeactivateUserById(user1.getId());
+        userService.activateOrDeactivateUserById(user2.getId());
+
+        // then
+        assertThat(user1.isActive(), is(false));
+        assertThat(user2.isActive(), is(true));
     }
 
     @Test
@@ -188,6 +242,7 @@ class UserServiceTest {
         // then
         assertThat(exception.getMessage(), is(new WrongPasswordException().getMessage()));
     }
+
 
 
     private static User getUser() {

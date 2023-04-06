@@ -29,8 +29,8 @@
 <section class="user-menu">
     <div class="user-menu-box">
         <h3 th:text="'Profile: ' + ${user.username}"></h3>
-        <h4 th:text="'Liked meals quantity: ' + ${mealsSize}"></h4>
-        <h4 th:text="'Saved diets quantity: ' + ${dietsSize}"></h4>
+        <h4 th:text="'Liked meals: ' + ${mealsSize}"></h4>
+        <h4 th:text="'Saved diets: ' + ${dietsSize}"></h4>
         <h4 th:text="'Registered since: ' + ${user.accountCreationDate}"></h4>
         <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'', ''MODERATOR'')')}">
             <h3>Admin & Moderator features</h3>

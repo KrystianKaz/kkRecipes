@@ -28,18 +28,12 @@ public class UserService {
         return userRepository.findByUsername(username).orElseThrow(() -> new UserNotExistException(username));
     }
 
-    public void activateOrDeactivateUserById(long id, Principal principal) {
-        User userIsAdminOrModerator = findUserByUsername(principal.getName());
+    public void activateOrDeactivateUserById(long id) {
+        User givenUser = userRepository.findById(id).orElseThrow(() -> new UserNotExistException(id));
 
-        if (userIsAdminOrModerator.getUserRoles().equals(UserRolesEnum.ADMIN) ||
-                userIsAdminOrModerator.getUserRoles().equals(UserRolesEnum.MODERATOR)) {
-
-            User givenUser = userRepository.findById(id).orElseThrow(() -> new UserNotExistException(id));
-
-            if (!givenUser.getUserRoles().equals(UserRolesEnum.ADMIN)) {
-                givenUser.setActive(!givenUser.isActive());
-                userRepository.save(givenUser);
-            } else throw new IllegalOperationException();
+        if (!givenUser.getUserRoles().equals(UserRolesEnum.ADMIN)) {
+            givenUser.setActive(!givenUser.isActive());
+            userRepository.save(givenUser);
         } else throw new IllegalOperationException();
     }
 

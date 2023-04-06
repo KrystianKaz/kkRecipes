@@ -114,10 +114,8 @@ public class UserController {
     }
 
     @PostMapping("/user/usersList/{id}")
-    public RedirectView changeUserActiveStatus(@PathVariable long id, Principal principal) {
-        if(principal != null) {
-            userService.activateOrDeactivateUserById(id, principal);
-        } else throw new IllegalOperationException();
+    public RedirectView changeUserActiveStatus(@PathVariable long id) {
+        userService.activateOrDeactivateUserById(id);
 
         return new RedirectView("/user/usersList");
     }

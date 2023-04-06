@@ -14,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final UserService userService;
+
     @Bean
     BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -29,7 +30,9 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/user", "/likedMeals", "/savedDailyDiets", "/saveDailyMealPlan")
-                                .hasAnyAuthority("USER", "MODERATOR", "ADMIN")
+                            .hasAnyAuthority("USER", "MODERATOR", "ADMIN")
+                        .requestMatchers("/user/*")
+                            .hasAnyAuthority("MODERATOR", "ADMIN")
                         .anyRequest().permitAll()
                 )
                 .csrf().disable()

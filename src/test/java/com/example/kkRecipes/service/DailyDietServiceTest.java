@@ -7,6 +7,7 @@ import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanNutrientsDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanValuesDTO;
 import com.example.kkRecipes.repository.DailyDietRepository;
+import com.example.kkRecipes.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -34,6 +35,12 @@ class DailyDietServiceTest {
 
     @Mock
     private DailyDietRepository dailyDietRepository;
+
+    @Mock
+    private UserRepository userRepository;
+
+    @Mock
+    private UserService userService;
 
     @Test
     void should_save_daily_diet_into_liked_by_user() {
@@ -175,6 +182,28 @@ class DailyDietServiceTest {
 
         // then
         assertThat(exception.getMessage(), is(new IllegalOperationException().getMessage()));
+    }
+
+    @Test
+    void should_return_all_daily_diets_saved_by_user() {
+        // given
+        User givenUser = getUser();
+
+        DailyDiet dailyDiet1 = getDailyDiet(1, givenUser.getId(), true);
+        DailyDiet dailyDiet2 = getDailyDiet(2, givenUser.getId(), true);
+        DailyDiet dailyDiet3 = getDailyDiet(3, givenUser.getId(), true);
+        List<DailyDiet> savedDietsByUser = List.of(dailyDiet1, dailyDiet2, dailyDiet3);
+
+        given(userService.findUserByUsername(givenUser.getUsername())).willReturn(givenUser);
+        given(dailyDietRepository.findAllByAddedByUser(givenUser.getId())).willReturn(savedDietsByUser);
+
+        // when
+        List<DailyDiet> dietsSavedByUserAndFound = dailyDietService.findAllDietsSavedByUser(givenUser.getUsername());
+
+        // then
+        assertThat(dietsSavedByUserAndFound.size(), is(3));
+        assertThat(dietsSavedByUserAndFound.get(1).getId(), is(2L));
+        assertThat(dietsSavedByUserAndFound.get(2).getAddedByUser(), is(givenUser.getId()));
     }
 
 
