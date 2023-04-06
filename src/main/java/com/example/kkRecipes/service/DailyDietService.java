@@ -12,11 +12,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class DailyDietService {
 
     private final DailyDietRepository dailyDietRepository;
+    private final UserService userService;
 
     public void saveDailyDiet(DailyDiet dailyDiet, MealPlanDTO mealPlanDTO, User user) {
         dailyDiet.setCalories(mealPlanDTO.getNutrients().getCalories());
@@ -60,6 +63,12 @@ public class DailyDietService {
         if (dailyDiet.getAddedByUser() == user.getId()) {
             dailyDietRepository.delete(dailyDiet);
         } else throw new IllegalOperationException();
+    }
+
+    public List<DailyDiet> findAllDietsSavedByUser(String username) {
+        User userByUsername = userService.findUserByUsername(username);
+
+        return dailyDietRepository.findAllByAddedByUser(userByUsername.getId());
     }
 
 

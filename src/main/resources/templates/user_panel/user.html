@@ -28,8 +28,13 @@
 <!-- User Page Section begin-->
 <section class="user-menu">
     <div class="user-menu-box">
+        <h3 th:text="'Logged as: ' + ${name}"></h3>
         <a th:href="@{/likedMeals}">Liked meals</a>
         <a th:href="@{/savedDailyDiets}">Your daily diets</a>
+        <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'', ''MODERATOR'')')}">
+            <h3>Admin & Moderator features</h3>
+            <a th:href="@{/user/usersList}">Users list</a>
+        </div>
     </div>
 </section>
 <!-- User page Section end-->

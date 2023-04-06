@@ -1,6 +1,7 @@
 package com.example.kkRecipes.controller;
 
 import com.example.kkRecipes.exception.custom.CreatedUserExistException;
+import com.example.kkRecipes.exception.custom.IllegalOperationException;
 import com.example.kkRecipes.exception.custom.WrongEmailException;
 import com.example.kkRecipes.exception.custom.WrongPasswordException;
 import com.example.kkRecipes.model.DailyDiet;
@@ -49,8 +50,24 @@ public class UserController {
     }
 
     @GetMapping("/user")
-    public String showUserPanel() {
+    public String showUserPanel(Principal principal, Model model) {
+        String username = principal.getName();
+        model.addAttribute("name", username);
         return "user_panel/user";
+    }
+
+    @GetMapping("/user/profile/{username}")
+    public String showUserProfile(@PathVariable String username, Model model) {
+        User userByUsername = userService.findUserByUsername(username);
+        model.addAttribute("user", userByUsername);
+
+        int likedMealsSize = mealService.mealsAddedByUserToLiked(userByUsername).size();
+        model.addAttribute("mealsSize", likedMealsSize);
+
+        int savedDietsSize = dailyDietService.findAllDietsSavedByUser(username).size();
+        model.addAttribute("dietsSize", savedDietsSize);
+
+        return "user_panel/user_pages/user-profile";
     }
 
     @GetMapping("/likedMeals")
@@ -88,6 +105,23 @@ public class UserController {
         return "user_panel/user_pages/saved-daily-diets";
     }
 
+    @GetMapping("/user/usersList")
+    public String getListOfUsers(Model model) {
+        List<User> allUsers = userService.findAllUsers();
+        model.addAttribute("list", allUsers);
+
+        return "user_panel/user_pages/users-list";
+    }
+
+    @PostMapping("/user/usersList/{id}")
+    public RedirectView changeUserActiveStatus(@PathVariable long id, Principal principal) {
+        if(principal != null) {
+            userService.activateOrDeactivateUserById(id, principal);
+        } else throw new IllegalOperationException();
+
+        return new RedirectView("/user/usersList");
+    }
+
     @PostMapping("/changeCompletionStatus/{id}")
     public RedirectView changeCompletionStatusOfDailyPlan(@PathVariable long id, Principal principal) {
         User user = userService.findUserByUsername(principal.getName());
@@ -119,5 +153,10 @@ public class UserController {
     public String handleSQLErrors(SQLException e, Model model) {
         model.addAttribute("wrongData", e.getMessage());
         return "auth/register";
+    }
+
+    @ExceptionHandler(IllegalOperationException.class)
+    public String handleOperationErrors() {
+        return "errors/405";
     }
 }

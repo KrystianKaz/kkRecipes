@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="/css/style.css"/>
+
+<!-- icon -->
+<link rel="icon" type="image/png" href="/img/logo.png"/>
+
+<!-- Header section - Menu toolbar -->
+<div th:insert="~{dynamic/navigationMain.html}"></div>
+<!-- Header section - Menu toolbar -->
+
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img3">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Users list</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section end -->
+
+<!-- Users List section begin-->
+<!--TODO css table (+delete earlier styles)-->
+<section class="users-section">
+    <div class="users-box">
+        <table class="content-table">
+            <thead>
+            <tr>
+                <th><h3>Id</h3></th>
+                <th><h3>Username</h3></th>
+                <th><h3>Role</h3></th>
+                <th><h3>Active?</h3></th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:each="users : ${list}">
+                <div class="users-list">
+                    <tr>
+                        <td><a th:href="@{/user/profile/{username}(username=${users.username})}"><h4
+                                th:text="${users.id}"></h4></a></td>
+                        <td><a th:href="@{/user/profile/{username}(username=${users.username})}"><h4
+                                th:text="${users.username}"></h4></a></td>
+                        <td><a th:href="@{/user/profile/{username}(username=${users.username})}"><h4
+                                th:text="${users.userRoles}"></h4></a></td>
+                        <td><a th:href="@{/user/profile/{username}(username=${users.username})}"><h4
+                                th:text="${users.active}"></h4></a></td>
+                    </tr>
+                </div>
+            </div>
+            </tbody>
+        </table>
+    </div>
+</section>
+<!-- Users List section end-->
+
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
+</html>

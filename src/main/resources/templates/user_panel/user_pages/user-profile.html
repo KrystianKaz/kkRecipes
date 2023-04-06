@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="/css/style.css"/>
+
+<!-- icon -->
+<link rel="icon" type="image/png" href="/img/logo.png"/>
+
+<!-- Header section - Menu toolbar -->
+<div th:insert="~{dynamic/navigationMain.html}"></div>
+<!-- Header section - Menu toolbar -->
+
+<body>
+
+<!-- Hero Section begin -->
+<section class="hero">
+    <div class="hero-img3">
+        <div class="hero-wrapper">
+            <div class="hero-wrapper-text">
+                <h1>Profile</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section end -->
+
+<!-- User Page Section begin-->
+<section class="user-menu">
+    <div class="user-menu-box">
+        <h3 th:text="'Profile: ' + ${user.username}"></h3>
+        <h4 th:text="'Liked meals quantity: ' + ${mealsSize}"></h4>
+        <h4 th:text="'Saved diets quantity: ' + ${dietsSize}"></h4>
+        <h4 th:text="'Registered since: ' + ${user.accountCreationDate}"></h4>
+        <div th:if="${#authorization.expression('hasAnyAuthority(''ADMIN'', ''MODERATOR'')')}">
+            <h3>Admin & Moderator features</h3>
+            <h4 th:text="'Role: ' + ${user.userRoles}"></h4>
+            <h4 th:text="'Is active: ' + ${user.active}"></h4>
+            <div th:unless="${#authentication.name} == ${user.username}">
+                <form method="post" th:action="@{/user/usersList/{id}(id=${user.id})}">
+                    <div th:unless="${user.active}">
+                        <button onclick="if (!(confirm('Are you sure you want to change status of this user?'))) return false">
+                            Activate
+                        </button>
+                    </div>
+                    <div th:if="${user.active}">
+                        <button onclick="if (!(confirm('Are you sure you want to change status of this user?'))) return false">
+                            Deactivate
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- User page Section end-->
+
+<!-- Footer section begin -->
+<section class="footer">
+    <div th:insert="~{dynamic/footer.html}"></div>
+</section>
+<!-- Footer section - end -->
+
+</body>
+</html>

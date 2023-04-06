@@ -87,7 +87,7 @@ button:hover {
     font-size: small;
 }
 
-.photo img{
+.photo img {
     width: 30vh;
     border-radius: 50%;
     border-style: solid;
@@ -195,7 +195,7 @@ button:hover {
     margin-right: auto;
 }
 
-.error img{
+.error img {
     height: 25vh;
     margin-top: 2vw;
     margin-left: auto;
@@ -699,6 +699,18 @@ select {
     margin-top: 1rem;
 }
 
+.user-menu-box h3 {
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+.user-menu-box h4 {
+    font-family: "Montserrat", sans-serif;
+    color: aliceblue;
+    font-weight: 100;
+    margin-bottom: 1vh;
+}
+
 .user-menu a {
     display: block;
     margin-bottom: 1rem;
@@ -707,6 +719,70 @@ select {
 
 .user-menu a:hover {
     color: #ff9900;
+}
+
+.users-section {
+    width: 80%;
+    margin: 1vh auto;
+}
+
+.content-table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    min-width: 300px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2vh;
+}
+
+.content-table thead tr {
+    color:rgba(255, 255, 255, 0.1);
+    text-align: left;
+}
+
+.content-table th,
+.content-table td {
+    padding: 1vh;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #ff9900;
+}
+
+.content-table tbody tr:nth-of-type(odd) {
+    background-color: rgba(205, 205, 205, 0.15);
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #ff9900;
+}
+
+.content-table tbody tr:hover {
+    font-weight: 600;
+    background-color: rgba(255, 145, 0, 0.2);
+}
+
+.content-table h4 {
+    font-family: "Montserrat", sans-serif;
+    color: aliceblue;
+    font-weight: 100;
+}
+
+.content-table h4:hover {
+    font-size: bold;
+}
+
+.users-box {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: solid;
+    padding: 0.5rem;
+    border-radius: 2rem 0rem;
+    border-color: rgb(0, 0, 0, 0.5);
+    background-color: rgb(255, 255, 255, 0.1);
+    box-shadow: rgb(245, 102, 0) 20px 20px 30px -15px;
 }
 
 .navbar {
@@ -852,5 +928,23 @@ select {
     .hero-wrapper-text {
         background-color: rgba(0, 0, 0, 0.6);
         left: 1vh;
+    }
+
+    .users-box {
+        width: 100%;
+    }
+
+    .user-menu-box {
+        width: 100%;
+    }
+
+    .user-menu-box h3 {
+        font-size: medium;
+        margin-bottom: 2vh;
+        margin-top: 2vh;
+    }
+
+    .users-section {
+        width: 99%;
     }
 }
