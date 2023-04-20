@@ -7,13 +7,15 @@ import com.example.kkRecipes.model.dto.meal_plan.MealPlanDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanNutrientsDTO;
 import com.example.kkRecipes.model.dto.meal_plan.MealPlanValuesDTO;
 import com.example.kkRecipes.repository.DailyDietRepository;
-import com.example.kkRecipes.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -35,9 +37,6 @@ class DailyDietServiceTest {
 
     @Mock
     private DailyDietRepository dailyDietRepository;
-
-    @Mock
-    private UserRepository userRepository;
 
     @Mock
     private UserService userService;

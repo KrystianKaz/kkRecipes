@@ -1,0 +1,26 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+      import: optional:file:.env[.properties]
+  datasource:
+    url: jdbc:mysql://localhost:3306/kkrecipes_test?useSSL=false&serverTimezone=CET&allowPublicKeyRetrieval=true
+    username: KrystianKaz
+    password: kkrecipes
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  flyway:
+    enabled: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+kkrecipes:
+  apiKeyValue: ${API_KEY}

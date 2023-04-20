@@ -108,10 +108,7 @@ public class RecipeController {
     }
 
     @GetMapping("/saveDailyMealPlan")
-    public String getDailyPlanSavingPage(HttpSession session, Model model) {
-        MealPlanDTO mealPlanDTO = (MealPlanDTO) session.getAttribute("plan"); // pobieranie obiektu z sesji
-        model.addAttribute("plan", mealPlanDTO);
-
+    public String getDailyPlanSavingPage() {
         return "daily_plan/daily-saving";
     }
 
@@ -148,7 +145,7 @@ public class RecipeController {
     }
 
     @PostMapping("/recipes/{id}/liked")
-    public RedirectView removeMealToLikedByUser(@PathVariable("id") int id, Principal principal, Meal meal) {
+    public RedirectView likedMealStatusChanger(@PathVariable("id") int id, Principal principal, Meal meal) {
         mealService.addOrRemoveMealFromLikedByUser(id, userService.findUserByUsername(principal.getName()));
         return new RedirectView("/recipes/{id}");
     }
