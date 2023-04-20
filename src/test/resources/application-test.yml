@@ -4,9 +4,9 @@ spring:
       on-profile: test
       import: optional:file:.env[.properties]
   datasource:
-    url: jdbc:mysql://localhost:3306/kkrecipes_test?useSSL=false&serverTimezone=CET&allowPublicKeyRetrieval=true
-    username: KrystianKaz
-    password: kkrecipes
+    url: ${TESTDB_URL}
+    username: ${TESTDB_USER}
+    password: ${TESTDB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   flyway:
     enabled: false
